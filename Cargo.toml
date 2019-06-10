@@ -1,6 +1,6 @@
 [package]
 name = "vega_lite_3"
-version = "0.1.0"
+version = "0.1.0-dev"
 authors = ["David Bernard <david.bernard.31@gmail.com>"]
 edition = "2018"
 license = "Apache-2.0"
@@ -13,8 +13,9 @@ keywords = ["visualization", "plot", "vega"]
 [dependencies]
 serde = {version = "1.0", features = ["derive"]}
 serde_json = "1.0.39"
-derive_builder = {git="https://github.com/colin-kiegel/rust-derive-builder"} #  until 0.7.2 is publish
+derive_builder = "0.7.2"
 failure = "0.1.5"
+showata = {version = "0.1.0-dev", optional = true, path = "../showata"}
 
 [dev-dependencies]
 csv = "1.0"

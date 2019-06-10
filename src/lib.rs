@@ -3,6 +3,9 @@ mod schema;
 pub use schema::*;
 use serde::Serialize;
 
+#[cfg(feature = "showata")]
+mod show_vega;
+
 pub fn iter_to_data<T>(v: impl Iterator<Item = T>) -> Data
 where
     T: Serialize,
