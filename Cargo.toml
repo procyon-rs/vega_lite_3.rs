@@ -4,7 +4,7 @@ version = "0.1.0-dev"
 authors = ["David Bernard <david.bernard.31@gmail.com>"]
 edition = "2018"
 license = "Apache-2.0"
-description = "rust api for vega-lite 3"
+description = "rust api for vega-lite v3"
 repository = "https://github.com/davidB/showata"
 readme = "README.md"
 #category = ["visualization"]
@@ -15,7 +15,8 @@ serde = {version = "1.0", features = ["derive"]}
 serde_json = "1.0.39"
 derive_builder = "0.7.2"
 failure = "0.1.5"
-showata = {version = "0.1.0-dev", optional = true, path = "../showata"}
+#showata = {version = "0.1.0-dev", optional = true, path = "../showata"}
+showata = {version = "0.1.0", optional = true}
 
 [dev-dependencies]
 csv = "1.0"
