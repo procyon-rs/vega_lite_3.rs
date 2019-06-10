@@ -14,9 +14,16 @@ keywords = ["visualization", "plot", "vega"]
 serde = {version = "1.0", features = ["derive"]}
 serde_json = "1.0.39"
 derive_builder = "0.7.2"
-failure = "0.1.5"
 #showata = {version = "0.1.0-dev", optional = true, path = "../showata"}
 showata = {version = "0.1.0", optional = true}
+failure = {version = "0.1.5", optional = true }
 
 [dev-dependencies]
 csv = "1.0"
+
+[features]
+show_vega = ["showata", "failure"]
+
+[[example]]
+name = "sample_vega"
+required-features = ["show_vega"]

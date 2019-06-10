@@ -1,9 +1,9 @@
 use vega_lite_3::*;
-//use showata::Showable;
+use showata::Showable;
 use csv;
 use std::path::Path;
 use serde::{Serialize, Deserialize};
-use serde_json;
+use failure;
 
 #[derive(Serialize, Deserialize)]
 pub struct Item {
@@ -18,7 +18,8 @@ macro_rules! build{
     };
 }
 
-fn main() -> Result<(), failure::Error> {
+
+fn main() -> Result<(), Box<std::error::Error>> {
     // {
     //   "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
     //   "description": "Google's stock price over time.",
@@ -51,8 +52,8 @@ fn main() -> Result<(), failure::Error> {
             .y(build!(YClassBuilder::default().field("price").def_type(StandardType::Quantitative)))
         ))
     );
-    //chart.show()?;
-    let content = serde_json::to_string(&chart)?;
+    chart.show()?;
+    let content = chart.to_string()?;
     eprint!("{}", content);
     Ok(())
 }
