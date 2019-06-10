@@ -1,4 +1,4 @@
-# How to make `vegalite3`
+# How to make `vegalite3` schema
 
 The format command: `rustfmt src/vegalite3/schema.rs`
 
