@@ -25,5 +25,9 @@ csv = "1.0"
 show_vega = ["showata", "failure"]
 
 [[example]]
-name = "sample_vega"
+name = "scatterplot"
+required-features = ["show_vega"]
+
+[[example]]
+name = "stock_graph"
 required-features = ["show_vega"]
