@@ -2,7 +2,7 @@
 
 A Rust api for vega-lite v3. Use it to generate vega-lite json, to display result into Jupyter or Browser (via [showata](https://crates.io/crates/showata)).
 
-see [examples on github](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/sample_vega.rs)
+see [examples on github](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/)
 
 ## Links
 
