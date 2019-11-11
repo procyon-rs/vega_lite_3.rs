@@ -9,10 +9,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-use serde::Serialize;
 use crate::Data;
 use crate::DataBuilder;
 use crate::DataInlineDataset;
+use serde::Serialize;
 
 pub fn iter_to_data<T>(v: impl Iterator<Item = T>) -> Data
 where
@@ -44,7 +44,6 @@ where
     DataInlineDataset::UnionArray(values)
 }
 
-
 impl<T> From<&[T]> for Data
 where
     T: Serialize,
@@ -60,5 +59,20 @@ where
 {
     fn from(v: &Vec<T>) -> Self {
         iter_to_data(v.iter())
+    }
+}
+
+#[cfg(feature = "ndarray")]
+use ndarray::ArrayBase;
+
+#[cfg(feature = "ndarray")]
+impl<A, D, S> From<ArrayBase<S, D>> for Data
+where
+    A: Serialize,
+    D: ndarray::Dimension,
+    S: ndarray::Data<Elem = A>,
+{
+    fn from(v: ArrayBase<S, D>) -> Self {
+        iter_to_data(v.genrows().into_iter())
     }
 }

@@ -1,7 +1,7 @@
 [package]
 name = "vega_lite_3"
 version = "0.1.1-dev"
-authors = ["David Bernard <david.bernard.31@gmail.com>"]
+authors = ["David Bernard <david.bernard.31@gmail.com>", "François Mockers <mockersf@gmail.com>"]
 edition = "2018"
 license = "Apache-2.0"
 description = "rust api for vega-lite v3"
@@ -17,9 +17,11 @@ derive_builder = "0.9.0"
 #showata = {version = "0.1.0-dev", optional = true, path = "../showata"}
 showata = {version = "0.1.0", optional = true}
 failure = {version = "0.1.5", optional = true }
+ndarray = {version = "0.13", features = ["serde"], optional = true}
 
 [dev-dependencies]
 csv = "1.0"
+ndarray-rand = "0.11"
 
 [features]
 show_vega = ["showata", "failure"]
@@ -31,3 +33,7 @@ required-features = ["show_vega"]
 [[example]]
 name = "stock_graph"
 required-features = ["show_vega"]
+
+[[example]]
+name = "from_ndarray"
+required-features = ["show_vega", "ndarray"]
