@@ -38,7 +38,7 @@ where
     //     }
     // })
     let values = v
-        .map(|it| serde_json::to_value(it))
+        .map(serde_json::to_value)
         .collect::<Result<Vec<_>, _>>()
         .expect("TODO manage error in iter_to_dataInlineDataSet");
     DataInlineDataset::UnionArray(values)
