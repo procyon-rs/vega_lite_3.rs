@@ -42,3 +42,7 @@ required-features = ["show_vega", "ndarray"]
 [[example]]
 name = "from_csv"
 required-features = ["show_vega", "csv"]
+
+[[example]]
+name = "from_url"
+required-features = ["show_vega"]

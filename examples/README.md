@@ -41,3 +41,13 @@ cargo run --example from_csv --features show_vega,csv
 Loads data directly from a `csv` without deserializing to a `struct`.
 
 <img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/stock_graph.png">
+
+## [From url](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/from_url.rs)
+
+```
+cargo run --example from_url --features show_vega
+```
+
+Loads data directly from an URL.
+
+<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/stock_graph.png">
