@@ -11,17 +11,17 @@
 // limitations under the License.
 //use vega_lite::Spec;
 use crate::Vegalite;
+use failure::Error;
 use serde_json;
 use showata::ContentInfo;
 use showata::Showable;
-use failure::Error;
 
 impl Showable for Vegalite {
     fn to_content_info(&self) -> Result<ContentInfo, Error> {
         // vega3-extension: .vg, .vl, .vg.json, .vl.json, .vega, .vegalite
         // mime-types: 	application/vnd.vega.v3+json, application/vnd.vegalite.v2+json
         let content = serde_json::to_string(self)?;
-        Ok(ContentInfo{
+        Ok(ContentInfo {
             content,
             mime_type: "application/vnd.vegalite.v3+json".into(),
         })
@@ -34,7 +34,6 @@ impl Showable for Vegalite {
         let content = VEGA_EMBED_HTML_TEMPLATE.replace("{{ spec_as_json }}", &dod.content);
         Ok(content.into())
     }
-
 }
 
 const VEGA_EMBED_HTML_TEMPLATE: &str = r#"

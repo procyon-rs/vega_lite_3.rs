@@ -9,15 +9,15 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-mod schema;
 mod data;
+mod schema;
 mod string;
 
 #[cfg(feature = "show_vega")]
 mod show_vega;
 
-pub use schema::*;
 pub use data::*;
+pub use schema::*;
 pub use string::*;
 
 impl From<Mark> for AnyMark {
@@ -25,4 +25,3 @@ impl From<Mark> for AnyMark {
         AnyMark::Enum(v)
     }
 }
-
