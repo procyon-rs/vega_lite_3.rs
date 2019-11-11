@@ -36,19 +36,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .y(build!(YClassBuilder::default()
                 .field("y")
                 .def_type(StandardType::Quantitative)))
-            .color(ValueDefWithConditionMarkPropFieldDefStringNull {
-                aggregate: None,
-                bin: None,
-                condition: None,
-                field: Some(Field::String("cluster".to_string())),
-                legend: None,
-                scale: None,
-                sort: None,
-                time_unit: None,
-                title: None,
-                value: None,
-                value_def_with_condition_mark_prop_field_def_string_null_type: None
-            }))));
+            .color(build!(
+                ValueDefWithConditionMarkPropFieldDefStringNullBuilder::default()
+                    .field(Field::String("cluster".to_string()))
+            )))));
     chart.show()?;
     let content = chart.to_string()?;
     eprint!("{}", content);
