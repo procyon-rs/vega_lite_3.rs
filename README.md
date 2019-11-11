@@ -1,8 +1,13 @@
-# vega-lite v3 for rust
+# vega-lite v3 for rust [![Realease Doc](https://docs.rs/vega_lite_3/badge.svg)](https://docs.rs/vega_lite_3) [![Crate](https://img.shields.io/crates/v/vega_lite_3.svg)](https://crates.io/crates/vega_lite_3)
 
-A Rust api for vega-lite v3. Use it to generate vega-lite json, to display result into Jupyter or Browser (via [showata](https://crates.io/crates/showata)).
+A Rust api for vega-lite v3. Use it to generate vega-lite json, to display result in your Browser or in Jupyter (via [showata](https://crates.io/crates/showata)).
 
-see [examples on github](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/)
+## Examples
+
+[<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/scatterplot.png">](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/scatterplot.rs)
+[<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/stock_graph.png">](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/stock_graph.rs)
+
+see [the full list of examples on github](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/)
 
 ## Links
 
