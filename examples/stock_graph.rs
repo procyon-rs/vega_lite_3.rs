@@ -1,9 +1,9 @@
-use vega_lite_3::*;
-use showata::Showable;
 use csv;
-use std::path::Path;
-use serde::{Serialize, Deserialize};
 use failure;
+use serde::{Deserialize, Serialize};
+use showata::Showable;
+use std::path::Path;
+use vega_lite_3::*;
 
 #[derive(Serialize, Deserialize)]
 pub struct Item {
@@ -12,14 +12,13 @@ pub struct Item {
     pub price: f64,
 }
 
-macro_rules! build{
+macro_rules! build {
     ($s:expr ) => {
         $s.build().map_err(|s| failure::format_err!("{}", s))?
     };
 }
 
-
-fn main() -> Result<(), Box<std::error::Error>> {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
     // {
     //   "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
     //   "description": "Google's stock price over time.",
@@ -33,7 +32,10 @@ fn main() -> Result<(), Box<std::error::Error>> {
     // }
 
     let mut rdr = csv::Reader::from_path(Path::new("examples/res/data/stocks.csv"))?;
-    let values = rdr.deserialize().into_iter().collect::<Result<Vec<Item>, csv::Error>>()?;
+    let values = rdr
+        .deserialize()
+        .into_iter()
+        .collect::<Result<Vec<Item>, csv::Error>>()?;
     let chart = build!(VegaliteBuilder::default()
         .title("Stock price")
         // .width(400.0)
@@ -41,17 +43,17 @@ fn main() -> Result<(), Box<std::error::Error>> {
         // .padding(Some(Padding::Double(5.0)))
         .description("Google's stock price over time.")
         .data(&values)
-        .transform(vec![
-            build!(TransformBuilder::default().filter(
-                "datum.symbol==='GOOG'"
-            ))
-        ])
+        .transform(vec![build!(
+            TransformBuilder::default().filter("datum.symbol==='GOOG'")
+        )])
         .mark(Mark::Line)
         .encoding(build!(EncodingBuilder::default()
-            .x(build!(XClassBuilder::default().field("date").def_type(StandardType::Temporal)))
-            .y(build!(YClassBuilder::default().field("price").def_type(StandardType::Quantitative)))
-        ))
-    );
+            .x(build!(XClassBuilder::default()
+                .field("date")
+                .def_type(StandardType::Temporal)))
+            .y(build!(YClassBuilder::default()
+                .field("price")
+                .def_type(StandardType::Quantitative))))));
     chart.show()?;
     let content = chart.to_string()?;
     eprint!("{}", content);
