@@ -13,6 +13,23 @@ A Rust api for vega-lite v3. Use it to generate vega-lite json, to display resul
 [<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/scatterplot.png">](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/scatterplot.rs)
 [<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/stock_graph.png">](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/stock_graph.rs)
 
+```rust
+    let values: Array2<f64> = Array::random((100, 2), StandardNormal);
+
+    let chart = build!(VegaliteBuilder::default()
+        .title("Random points")
+        .data(values)
+        .mark(Mark::Point)
+        .encoding(build!(EncodingBuilder::default()
+            .x(build!(XClassBuilder::default()
+                .field("data.0")
+                .def_type(StandardType::Quantitative)))
+            .y(build!(YClassBuilder::default()
+                .field("data.1")
+                .def_type(StandardType::Quantitative))))));
+    chart.show()?;
+```
+
 see [the full list of examples on github](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/)
 
 ## Links
