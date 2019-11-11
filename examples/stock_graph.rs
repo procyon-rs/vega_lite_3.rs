@@ -1,5 +1,4 @@
 use csv;
-use failure;
 use serde::{Deserialize, Serialize};
 use showata::Showable;
 use std::path::Path;
@@ -10,12 +9,6 @@ pub struct Item {
     pub symbol: String,
     pub date: String,
     pub price: f64,
-}
-
-macro_rules! build {
-    ($s:expr ) => {
-        $s.build().map_err(|s| failure::format_err!("{}", s))?
-    };
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -36,24 +29,30 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .deserialize()
         .into_iter()
         .collect::<Result<Vec<Item>, csv::Error>>()?;
-    let chart = build!(VegaliteBuilder::default()
+    let chart = VegaliteBuilder::default()
         .title("Stock price")
         // .width(400.0)
         // .height(200.0)
         // .padding(Some(Padding::Double(5.0)))
         .description("Google's stock price over time.")
         .data(&values)
-        .transform(vec![build!(
-            TransformBuilder::default().filter("datum.symbol==='GOOG'")
-        )])
+        .transform(vec![TransformBuilder::default()
+            .filter("datum.symbol==='GOOG'")
+            .build()?])
         .mark(Mark::Line)
-        .encoding(build!(EncodingBuilder::default()
-            .x(build!(XClassBuilder::default()
-                .field("date")
-                .def_type(StandardType::Temporal)))
-            .y(build!(YClassBuilder::default()
-                .field("price")
-                .def_type(StandardType::Quantitative))))));
+        .encoding(
+            EncodingBuilder::default()
+                .x(XClassBuilder::default()
+                    .field("date")
+                    .def_type(StandardType::Temporal)
+                    .build()?)
+                .y(YClassBuilder::default()
+                    .field("price")
+                    .def_type(StandardType::Quantitative)
+                    .build()?)
+                .build()?,
+        )
+        .build()?;
     chart.show()?;
     let content = chart.to_string()?;
     eprint!("{}", content);

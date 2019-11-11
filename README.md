@@ -16,17 +16,23 @@ A Rust api for vega-lite v3. Use it to generate vega-lite json, to display resul
 ```rust
     let values: Array2<f64> = Array::random((100, 2), StandardNormal);
 
-    let chart = build!(VegaliteBuilder::default()
+    let chart = VegaliteBuilder::default()
         .title("Random points")
         .data(values)
         .mark(Mark::Point)
-        .encoding(build!(EncodingBuilder::default()
-            .x(build!(XClassBuilder::default()
-                .field("data.0")
-                .def_type(StandardType::Quantitative)))
-            .y(build!(YClassBuilder::default()
-                .field("data.1")
-                .def_type(StandardType::Quantitative))))));
+        .encoding(
+            EncodingBuilder::default()
+                .x(XClassBuilder::default()
+                    .field("data.0")
+                    .def_type(StandardType::Quantitative)
+                    .build()?)
+                .y(YClassBuilder::default()
+                    .field("data.1")
+                    .def_type(StandardType::Quantitative)
+                    .build()?)
+                .build()?,
+        )
+        .build()?;
     chart.show()?;
 ```
 
