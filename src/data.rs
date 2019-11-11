@@ -76,3 +76,31 @@ where
         iter_to_data(v.genrows().into_iter())
     }
 }
+
+#[cfg(feature = "csv")]
+use csv::Reader;
+
+#[cfg(feature = "csv")]
+impl<R> From<Reader<R>> for Data
+where
+    R: std::io::Read,
+{
+    fn from(mut v: Reader<R>) -> Self {
+        DataBuilder::default()
+            .values(DataInlineDataset::UnionArray(
+                v.records()
+                    .into_iter()
+                    .map(|it: Result<csv::StringRecord, _>| {
+                        serde_json::Value::Array(
+                            it.expect("TODO manage error in csv")
+                                .iter()
+                                .map(|f: &str| serde_json::Value::String(f.to_string()))
+                                .collect::<Vec<_>>(),
+                        )
+                    })
+                    .collect::<Vec<_>>(),
+            ))
+            .build()
+            .unwrap()
+    }
+}
