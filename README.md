@@ -1,4 +1,10 @@
-# vega-lite v3 for rust [![Realease Doc](https://docs.rs/vega_lite_3/badge.svg)](https://docs.rs/vega_lite_3) [![Crate](https://img.shields.io/crates/v/vega_lite_3.svg)](https://crates.io/crates/vega_lite_3)
+# vega-lite v3 for rust
+
+[![license](https://img.shields.io/crates/l/vega_lite_3.svg)](https://spdx.org/licenses/Apache-2.0.html)
+[![version](https://img.shields.io/crates/v/vega_lite_3.svg)](https://crates.io/crates/vega_lite_3)
+[![Release Doc](https://docs.rs/vega_lite_3/badge.svg)](https://docs.rs/vega_lite_3)
+
+[![Actions Status](https://github.com/davidB/vega_lite_3.rs/workflows/ci-flow/badge.svg)](https://github.com/davidB/vega_lite_3.rs/actions)
 
 A Rust api for vega-lite v3. Use it to generate vega-lite json, to display result in your Browser or in Jupyter (via [showata](https://crates.io/crates/showata)).
 
