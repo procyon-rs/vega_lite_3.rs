@@ -15,6 +15,8 @@ mod string;
 
 #[cfg(feature = "show_vega")]
 mod show_vega;
+#[cfg(feature = "show_vega")]
+pub use showata::Showable;
 
 pub use data::*;
 pub use schema::*;
