@@ -38,6 +38,13 @@ A Rust api for vega-lite v3. Use it to generate vega-lite json, to display resul
 ```
 
 see [the full list of examples on github](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/)
+## Features
+
+| name      | enabled by default | functionnality |
+|-----------|--------------------|----------------|
+| show_vega | yes                | can display charts in the browser or in a notebook |
+| csv       | yes                | can load data from a csv |
+| ndarray   | yes                | can load data from a ndarray |
 
 ## Links
 
