@@ -4,17 +4,18 @@
 [![version](https://img.shields.io/crates/v/vega_lite_3.svg)](https://crates.io/crates/vega_lite_3)
 [![Release Doc](https://docs.rs/vega_lite_3/badge.svg)](https://docs.rs/vega_lite_3)
 
-[![Actions Status](https://github.com/davidB/vega_lite_3.rs/workflows/ci-flow/badge.svg)](https://github.com/davidB/vega_lite_3.rs/actions)
+[![Actions Status](https://github.com/procyon-rs/vega_lite_3.rs/workflows/ci-flow/badge.svg)](https://github.com/procyon-rs/vega_lite_3.rs/actions)
 
 A Rust api for vega-lite v3. Use it to generate vega-lite json, to display result in your Browser or in Jupyter (via [showata](https://crates.io/crates/showata)).
 
 ## Examples
 
-see [the full list of examples on github](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/)
+see [the full list of examples on github](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/)
 
-[<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/scatterplot.png" height="150px">](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/scatterplot.rs)
-[<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/stacked_bar_chart.png" height="150px">](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/stacked_bar_chart.rs)
-[<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/stock_graph.png" height="150px">](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/stock_graph.rs)
+[<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/cloropleth_unemployment.png" height="150px">](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/cloropleth_unemployment.rs)
+[<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/scatterplot.png" height="150px">](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/scatterplot.rs)
+[<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/stacked_bar_chart.png" height="150px">](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/stacked_bar_chart.rs)
+[<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/stock_graph.png" height="150px">](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/stock_graph.rs)
 
 ```rust
 let values: Array2<f64> = Array::random((100, 2), StandardNormal);

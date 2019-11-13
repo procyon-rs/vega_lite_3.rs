@@ -1,63 +1,73 @@
 # Graph types
 
-## [Scatterplot](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/scatterplot.rs)
+## [Cloropleth](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/cloropleth_unemployment.rs)
 
 ```
-cargo run --example scatterplot --features show_vega
+cargo run --example cloropleth_unemployment
+```
+
+Display data from a csv and a tsv as a cloropleth on a geo projection.
+
+<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/cloropleth_unemployment.png">
+
+## [Scatterplot](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/scatterplot.rs)
+
+```
+cargo run --example scatterplot
 ```
 
 Loads data from a `csv`, deserializing to a `struct`, and display a colored scatterplot.
 
-<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/scatterplot.png">
+<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/scatterplot.png">
 
-## [Stacked Bar Graph](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/stacked_bar_chart.rs)
+## [Stacked Bar Graph](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/stacked_bar_chart.rs)
 
 ```
-cargo run --example stacked_bar_chart --features show_vega
+cargo run --example stacked_bar_chart
 ```
 
 Loads data from an URL, displaying the aggregated count by type by month as a stacked bar graph.
 
-<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/stacked_bar_chart.png">
+<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/stacked_bar_chart.png">
 
-## [Stock Graph](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/stock_graph.rs)
+## [Stock Graph](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/stock_graph.rs)
 
 ```
-cargo run --example stock_graph --features show_vega
+cargo run --example stock_graph
 ```
 
 Loads data from a `csv`, deserializing to a `struct`, and display the graph as a line.
 
-<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/stock_graph.png">
+<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/stock_graph.png">
 
 # Data Sources
 
-## [From ndarray](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/from_ndarray.rs)
+## [From ndarray](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/from_ndarray.rs)
 
 ```
-cargo run --example from_ndarray --features show_vega,ndarray
+cargo run --example from_ndarray
 ```
 
 Loads data directly from a random [`ndarray::Array2`](https://docs.rs/ndarray/latest/ndarray/type.Array2.html).
 
-<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/from_ndarray.png">
+<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/from_ndarray.png">
 
-## [From csv](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/from_csv.rs)
+## [From csv](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/from_csv.rs)
 
 ```
-cargo run --example from_csv --features show_vega,csv
+cargo run --example from_csv
 ```
 
 Loads data directly from a `csv` without deserializing to a `struct`.
 
-<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/stock_graph.png">
+<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/stock_graph.png">
 
-## [From url](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/from_url.rs)
+## [From url](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/from_url.rs)
 
 ```
-cargo run --example from_url --features show_vega
+cargo run --example from_url
 ```
 
 Loads data directly from an URL.
 
-<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/stock_graph.png">
+<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/stock_graph.png">
