@@ -1,6 +1,5 @@
 use csv;
 use serde::{Deserialize, Serialize};
-use showata::Showable;
 use std::path::Path;
 use vega_lite_3::*;
 
@@ -24,11 +23,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     //   }
     // }
 
+    // input data: a CSV serialized to a `Vec<Item>`
     let mut rdr = csv::Reader::from_path(Path::new("examples/res/data/stocks.csv"))?;
     let values = rdr
         .deserialize()
         .into_iter()
         .collect::<Result<Vec<Item>, csv::Error>>()?;
+
+    // the chart
     let chart = VegaliteBuilder::default()
         .title("Stock price")
         // .width(400.0)
@@ -53,8 +55,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .build()?,
         )
         .build()?;
+
+    // display the chart using `showata`
     chart.show()?;
-    let content = chart.to_string()?;
-    eprint!("{}", content);
+
+    // print the vega lite spec
+    eprint!("{}", chart.to_string()?);
+
     Ok(())
 }

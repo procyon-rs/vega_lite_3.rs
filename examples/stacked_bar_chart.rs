@@ -1,6 +1,7 @@
 use vega_lite_3::*;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // the chart
     let chart = VegaliteBuilder::default()
         .title("Weather in Seattle")
         .data(
@@ -42,8 +43,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .build()?,
         )
         .build()?;
+
+    // display the chart using `showata`
     chart.show()?;
-    let content = chart.to_string()?;
-    eprint!("{}", content);
+
+    // print the vega lite spec
+    eprint!("{}", chart.to_string()?);
+
     Ok(())
 }

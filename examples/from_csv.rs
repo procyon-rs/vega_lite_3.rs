@@ -1,36 +1,41 @@
 use csv;
-use failure;
-use showata::Showable;
 use std::path::Path;
 use vega_lite_3::*;
 
-macro_rules! build {
-    ($s:expr ) => {
-        $s.build().map_err(|s| failure::format_err!("{}", s))?
-    };
-}
-
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // input data: a CSV reader
     let rdr = csv::Reader::from_path(Path::new("examples/res/data/stocks.csv"))?;
-    let chart = build!(VegaliteBuilder::default()
+
+    // the chart
+    let chart = VegaliteBuilder::default()
         .title("Stock price")
         .description("Google's stock price over time.")
         .data(rdr)
-        .transform(vec![build!(
-            TransformBuilder::default().filter("datum[0]==='GOOG'")
-        )])
+        .transform(vec![TransformBuilder::default()
+            .filter("datum[0]==='GOOG'")
+            .build()?])
         .mark(Mark::Line)
-        .encoding(build!(EncodingBuilder::default()
-            .x(build!(XClassBuilder::default()
-                .field("1")
-                .def_type(StandardType::Temporal)
-                .axis(build!(AxisBuilder::default().title("date")))))
-            .y(build!(YClassBuilder::default()
-                .field("2")
-                .def_type(StandardType::Quantitative)
-                .axis(build!(AxisBuilder::default().title("price"))))))));
+        .encoding(
+            EncodingBuilder::default()
+                .x(XClassBuilder::default()
+                    .field("1")
+                    .def_type(StandardType::Temporal)
+                    .axis(AxisBuilder::default().title("date").build()?)
+                    .build()?)
+                .y(YClassBuilder::default()
+                    .field("2")
+                    .def_type(StandardType::Quantitative)
+                    .axis(AxisBuilder::default().title("price").build()?)
+                    .build()?)
+                .build()?,
+        )
+        .build()?;
+
+    // display the chart using `showata`
     chart.show()?;
-    let content = chart.to_string()?;
-    eprint!("{}", content);
+
+    // print the vega lite spec
+    eprint!("{}", chart.to_string()?);
+
     Ok(())
 }

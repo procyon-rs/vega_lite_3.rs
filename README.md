@@ -10,34 +10,35 @@ A Rust api for vega-lite v3. Use it to generate vega-lite json, to display resul
 
 ## Examples
 
+see [the full list of examples on github](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/)
+
 [<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/scatterplot.png" height="150px">](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/scatterplot.rs)
 [<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/stacked_bar_chart.png" height="150px">](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/stacked_bar_chart.rs)
 [<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/stock_graph.png" height="150px">](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/stock_graph.rs)
 
 ```rust
-    let values: Array2<f64> = Array::random((100, 2), StandardNormal);
+let values: Array2<f64> = Array::random((100, 2), StandardNormal);
 
-    let chart = VegaliteBuilder::default()
-        .title("Random points")
-        .data(values)
-        .mark(Mark::Point)
-        .encoding(
-            EncodingBuilder::default()
-                .x(XClassBuilder::default()
-                    .field("data.0")
-                    .def_type(StandardType::Quantitative)
-                    .build()?)
-                .y(YClassBuilder::default()
-                    .field("data.1")
-                    .def_type(StandardType::Quantitative)
-                    .build()?)
-                .build()?,
-        )
-        .build()?;
-    chart.show()?;
+let chart = VegaliteBuilder::default()
+    .title("Random points")
+    .data(values)
+    .mark(Mark::Point)
+    .encoding(
+        EncodingBuilder::default()
+            .x(XClassBuilder::default()
+                .field("data.0")
+                .def_type(StandardType::Quantitative)
+                .build()?)
+            .y(YClassBuilder::default()
+                .field("data.1")
+                .def_type(StandardType::Quantitative)
+                .build()?)
+            .build()?,
+    )
+    .build()?;
+chart.show()?;
 ```
 
-see [the full list of examples on github](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/)
 ## Features
 
 | name      | enabled by default | functionnality |

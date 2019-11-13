@@ -1,35 +1,32 @@
-use failure;
-use showata::Showable;
 use vega_lite_3::*;
 
-macro_rules! build {
-    ($s:expr ) => {
-        $s.build().map_err(|s| failure::format_err!("{}", s))?
-    };
-}
-
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let chart = build!(VegaliteBuilder::default()
+    // the chart
+    let chart = VegaliteBuilder::default()
         .title("Stock price")
         .description("Google's stock price over time.")
-        .data(build!(DataBuilder::default().url(
+        .data(DataBuilder::default().url(
             "https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/data/stocks.csv"
-        )))
-        .transform(vec![build!(
+        ).build()?)
+        .transform(vec![
             TransformBuilder::default().filter("datum.symbol==='GOOG'")
-        )])
+        .build()?])
         .mark(Mark::Line)
-        .encoding(build!(EncodingBuilder::default()
-            .x(build!(XClassBuilder::default()
+        .encoding(EncodingBuilder::default()
+            .x(XClassBuilder::default()
                 .field("date")
                 .def_type(StandardType::Temporal)
-                ))
-            .y(build!(YClassBuilder::default()
+                .build()?)
+            .y(YClassBuilder::default()
                 .field("price")
                 .def_type(StandardType::Quantitative)
-                )))));
+                .build()?).build()?).build()?;
+
+    // display the chart using `showata`
     chart.show()?;
-    let content = chart.to_string()?;
-    eprint!("{}", content);
+
+    // print the vega lite spec
+    eprint!("{}", chart.to_string()?);
+
     Ok(())
 }
