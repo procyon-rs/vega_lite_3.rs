@@ -10,6 +10,16 @@ Loads data from a `csv`, deserializing to a `struct`, and display a colored scat
 
 <img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/scatterplot.png">
 
+## [Stacked Bar Graph](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/stacked_bar_chart.rs)
+
+```
+cargo run --example stacked_bar_chart --features show_vega
+```
+
+Loads data from an URL, displaying the aggregated count by type by month as a stacked bar graph.
+
+<img src="https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/screens/stacked_bar_chart.png">
+
 ## [Stock Graph](https://github.com/davidB/vega_lite_3.rs/blob/master/examples/stock_graph.rs)
 
 ```
