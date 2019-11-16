@@ -10,6 +10,16 @@ Display data from a csv and a tsv as a cloropleth on a geo projection.
 
 <img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/cloropleth_unemployment.png">
 
+## [Diverging Stacked Bar Chart](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/diverging_stacked_bar_chart.rs)
+
+```
+cargo run --example diverging_stacked_bar_chart
+```
+
+Display data from a json after doing some transformation on it as a stacked bar chart
+
+<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/diverging_stacked_bar_chart.png">
+
 ## [Scatterplot](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/scatterplot.rs)
 
 ```
