@@ -81,3 +81,15 @@ cargo run --example from_url
 Loads data directly from an URL.
 
 <img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/stock_graph.png">
+
+## [From JSON spec](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/from_json_spec.rs)
+
+```
+cargo run --example from_json_spec
+```
+
+Load the chart directly from the JSON spec.
+
+<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/diverging_stacked_bar_chart.png">
+
+
