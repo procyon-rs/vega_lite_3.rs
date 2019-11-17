@@ -9,6 +9,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 use derive_builder::Builder;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -25,7 +26,9 @@ pub struct Vegalite {
     /// that support JSON schema.
     #[serde(rename = "$schema")]
     #[serde(skip_serializing_if = "Option::is_none")]
-    #[builder(default = "Some(\"https://vega.github.io/schema/vega-lite/v3.json\".to_string())")]
+    #[builder(
+        default = "Some(\"https://vega.github.io/schema/vega-lite/v3.3.0.json\".to_string())"
+    )]
     pub schema: Option<String>,
     /// The alignment to apply to grid rows and columns.
     /// The supported string values are `"all"`, `"each"`, and `"none"`.
@@ -590,8 +593,6 @@ pub struct SpecClass {
     /// A specification of the view that gets faceted.
     ///
     /// A specification of the view that gets repeated.
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[builder(default)]
     pub spec: Option<Box<SpecClass>>,
     /// Definition for fields to be repeated.  One of:
     /// 1) An array of fields to be repeated.  If `"repeat"` is an array, the field can be
@@ -2412,8 +2413,8 @@ pub struct Scale {
     /// For _[continuous](https://vega.github.io/vega-lite/docs/scale.html#continuous)_ scales,
     /// expands the scale domain to accommodate the specified number of pixels on each of the
     /// scale range. The scale range must represent pixels for this parameter to function as
-    /// intended. Padding adjustment is performed prior to all other adjustments, including the
-    /// effects of the `zero`, `nice`, `domainMin`, and `domainMax` properties.
+    /// intended. Padding adjustment is performed prior to all other adjustments, including the
+    /// effects of the `zero`, `nice`, `domainMin`, and `domainMax` properties.
     ///
     /// For _[band](https://vega.github.io/vega-lite/docs/scale.html#band)_ scales, shortcut for
     /// setting `paddingInner` and `paddingOuter` to the same value.
@@ -4547,6 +4548,7 @@ pub struct ValueDefWithConditionMarkPropFieldDefTypeForShapeStringNull {
     /// have exactly the same type as their primary channels (e.g., `x`, `y`).
     #[serde(rename = "type")]
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[builder(default)]
     pub value_def_with_condition_mark_prop_field_def_type_for_shape_string_null_type:
         Option<TypeForShape>,
     /// A constant value in visual domain (e.g., `"red"` / "#0099ff" for color, values between
@@ -12778,14 +12780,15 @@ pub enum DataInlineDataset {
     UnionArray(Vec<serde_json::value::Value>),
 }
 
-// #[derive(Debug, Clone, Serialize, Deserialize)]
-// #[serde(untagged)]
-// pub enum InlineDataset {
-//     AnythingMap(HashMap<String, Option<serde_json::Value>>),
-//     Bool(bool),
-//     Double(f64),
-//     String(String),
-// }
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+#[allow(unused)]
+enum UnusedInlineDataset {
+    AnythingMap(HashMap<String, Option<serde_json::Value>>),
+    Bool(bool),
+    Double(f64),
+    String(String),
+}
 
 /// Aggregation function for the field
 /// (e.g., `mean`, `sum`, `median`, `min`, `max`, `count`).
