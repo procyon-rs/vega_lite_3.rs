@@ -61,19 +61,19 @@ from_into_string!(
     Day,
     Month,
     Lt,
-    SelectionInitArrayElement,
+    SelectionInitIntervalElement,
     Value,
     Field,
     ScaleRange,
     RangeRange,
     Scheme,
-    Tooltip,
+    TooltipUnion,
     Style,
     BindValue,
     InitSelectionInitMapping,
     Translate,
     InlineDatasetValue,
-    DataInlineDataset
+    UrlDataInlineDataset
 );
 
 // #[cfg(test)]

@@ -5,7 +5,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let chart = VegaliteBuilder::default()
         .title("Stock price")
         .description("Google's stock price over time.")
-        .data(DataBuilder::default().url(
+        .data(UrlDataBuilder::default().url(
             "https://raw.githubusercontent.com/davidB/vega_lite_3.rs/master/examples/res/data/stocks.csv"
         ).build()?)
         .transform(vec![

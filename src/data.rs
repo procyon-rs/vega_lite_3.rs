@@ -9,22 +9,22 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-use crate::Data;
-use crate::DataBuilder;
-use crate::DataInlineDataset;
+use crate::UrlData;
+use crate::UrlDataBuilder;
+use crate::UrlDataInlineDataset;
 use serde::Serialize;
 
-pub fn iter_to_data<T>(v: impl Iterator<Item = T>) -> Data
+pub fn iter_to_data<T>(v: impl Iterator<Item = T>) -> UrlData
 where
     T: Serialize,
 {
-    DataBuilder::default()
+    UrlDataBuilder::default()
         .values(iter_to_data_inline_dataset(v))
         .build()
         .unwrap()
 }
 
-fn iter_to_data_inline_dataset<T>(v: impl Iterator<Item = T>) -> DataInlineDataset
+fn iter_to_data_inline_dataset<T>(v: impl Iterator<Item = T>) -> UrlDataInlineDataset
 where
     T: Serialize,
 {
@@ -41,10 +41,10 @@ where
         .map(serde_json::to_value)
         .collect::<Result<Vec<_>, _>>()
         .expect("TODO manage error in iter_to_dataInlineDataSet");
-    DataInlineDataset::UnionArray(values)
+    UrlDataInlineDataset::UnionArray(values)
 }
 
-impl<T> From<&[T]> for Data
+impl<T> From<&[T]> for UrlData
 where
     T: Serialize,
 {
@@ -53,7 +53,7 @@ where
     }
 }
 
-impl<T> From<&Vec<T>> for Data
+impl<T> From<&Vec<T>> for UrlData
 where
     T: Serialize,
 {
@@ -66,7 +66,7 @@ where
 use ndarray::ArrayBase;
 
 #[cfg(feature = "ndarray")]
-impl<A, D, S> From<ArrayBase<S, D>> for Data
+impl<A, D, S> From<ArrayBase<S, D>> for UrlData
 where
     A: Serialize,
     D: ndarray::Dimension,
@@ -81,13 +81,13 @@ where
 use csv::Reader;
 
 #[cfg(feature = "csv")]
-impl<R> From<Reader<R>> for Data
+impl<R> From<Reader<R>> for UrlData
 where
     R: std::io::Read,
 {
     fn from(mut v: Reader<R>) -> Self {
-        DataBuilder::default()
-            .values(DataInlineDataset::UnionArray(
+        UrlDataBuilder::default()
+            .values(UrlDataInlineDataset::UnionArray(
                 v.records()
                     .into_iter()
                     .map(|it: Result<csv::StringRecord, _>| {

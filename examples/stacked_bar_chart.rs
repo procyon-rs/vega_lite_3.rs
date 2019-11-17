@@ -5,7 +5,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let chart = VegaliteBuilder::default()
         .title("Weather in Seattle")
         .data(
-            DataBuilder::default()
+            UrlDataBuilder::default()
                 .url("https://raw.githubusercontent.com/vega/vega-datasets/master/data/seattle-weather.csv")
                 .build()?
         )
@@ -21,15 +21,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .y(YClassBuilder::default()
                     .aggregate(Aggregate::Enum(AggregateOp::Count))
                     .build()?)
-                .color(ValueDefWithConditionMarkPropFieldDefStringNullBuilder::default()
+                .color(DefWithConditionMarkPropFieldDefStringNullBuilder::default()
                     .field("weather")
                     .scale(ScaleBuilder::default()
                         .domain(DomainUnion::UnionArray(vec![
-                            SelectionInitArrayElement::String("sun".to_string()),
-                            SelectionInitArrayElement::String("fog".to_string()),
-                            SelectionInitArrayElement::String("drizzle".to_string()),
-                            SelectionInitArrayElement::String("rain".to_string()),
-                            SelectionInitArrayElement::String("snow".to_string()),
+                            SelectionInitIntervalElement::String("sun".to_string()),
+                            SelectionInitIntervalElement::String("fog".to_string()),
+                            SelectionInitIntervalElement::String("drizzle".to_string()),
+                            SelectionInitIntervalElement::String("rain".to_string()),
+                            SelectionInitIntervalElement::String("snow".to_string()),
                         ]))
                         .range(ScaleRange::UnionArray(vec![
                             RangeRange::String("#e7ba52".to_string()),

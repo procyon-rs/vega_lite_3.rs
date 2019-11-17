@@ -4,7 +4,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // the chart
     let chart = VegaliteBuilder::default()
         .description("A population pyramid for the US in 2000.")
-        .data(DataBuilder::default().url(
+        .data(UrlDataBuilder::default().url(
             "https://raw.githubusercontent.com/vega/vega-datasets/master/data/population.json"
         ).build()?)
         .height(200)
@@ -28,9 +28,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .sort(Sort::Enum(SortOrder::Descending))
                 .axis(AxisBuilder::default().build()?) // TODO: set axis to null, see issue #5
                 .build()?)
-            .color(ValueDefWithConditionMarkPropFieldDefStringNullBuilder::default()
+            .color(DefWithConditionMarkPropFieldDefStringNullBuilder::default()
                 .field("gender")
-                .value_def_with_condition_mark_prop_field_def_string_null_type(StandardType::Nominal)
+                .def_with_condition_mark_prop_field_def_string_null_type(StandardType::Nominal)
                 .scale(ScaleBuilder::default().range(ScaleRange::UnionArray(vec![RangeRange::String("#e377c2".to_string()), RangeRange::String("#1f77b4".to_string())])).build()?)
                 .legend(LegendBuilder::default().orient(LegendOrient::Top).build()?)
                         // TODO: set title of legend to null, see issue #5

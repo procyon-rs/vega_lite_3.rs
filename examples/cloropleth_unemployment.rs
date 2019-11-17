@@ -5,7 +5,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let chart = VegaliteBuilder::default()
         .title("Choropleth of Unemployment Rate per County")
         .data(
-            DataBuilder::default()
+            UrlDataBuilder::default()
                 .url("https://raw.githubusercontent.com/vega/vega-datasets/master/data/us-10m.json")
                 .format(
                     DataFormatBuilder::default()
@@ -30,9 +30,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .encoding(
             EncodingBuilder::default()
                 .color(
-                    ValueDefWithConditionMarkPropFieldDefStringNullBuilder::default()
+                    DefWithConditionMarkPropFieldDefStringNullBuilder::default()
                         .field("rate")
-                        .value_def_with_condition_mark_prop_field_def_string_null_type(StandardType::Quantitative)
+                        .def_with_condition_mark_prop_field_def_string_null_type(StandardType::Quantitative)
                         .build()?,
                 )
                 .build()?,
