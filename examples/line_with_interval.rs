@@ -42,7 +42,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .height(500)
         .width(500)
         .data(
-            DataBuilder::default()
+            UrlDataBuilder::default()
                 .url("https://raw.githubusercontent.com/vega/vega-datasets/master/data/cars.json")
                 .build()?,
         )
