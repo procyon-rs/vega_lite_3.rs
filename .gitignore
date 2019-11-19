@@ -2,6 +2,9 @@
 # Created by https://www.gitignore.io/api/rust,jupyternotebooks
 # Edit at https://www.gitignore.io/?templates=rust,jupyternotebooks
 
+### VScode ###
+.vscode/
+
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
