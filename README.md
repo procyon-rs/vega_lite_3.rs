@@ -6,6 +6,7 @@
 
 [![Actions Status](https://github.com/procyon-rs/vega_lite_3.rs/workflows/ci-flow/badge.svg)](https://github.com/procyon-rs/vega_lite_3.rs/actions)
 [![codecov](https://codecov.io/gh/procyon-rs/vega_lite_3.rs/branch/master/graph/badge.svg)](https://codecov.io/gh/procyon-rs/vega_lite_3.rs)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=procyon-rs/vega_lite_3.rs)](https://dependabot.com)
 
 A Rust api for vega-lite v3. Use it to generate vega-lite json, to display result in your Browser or in Jupyter (via [showata](https://crates.io/crates/showata)).
 
