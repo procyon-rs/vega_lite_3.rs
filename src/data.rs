@@ -15,6 +15,7 @@ use crate::UrlDataBuilder;
 use crate::UrlDataInlineDataset;
 use serde::Serialize;
 
+/// Helper method turning an iterator over a `Serialize`-able type into a data that can't be used in a graph.
 pub fn iter_to_data<T>(v: impl Iterator<Item = T>) -> UrlData
 where
     T: Serialize,
@@ -110,7 +111,6 @@ where
         UrlDataBuilder::default()
             .values(UrlDataInlineDataset::UnionArray(
                 v.records()
-                    .into_iter()
                     .map(|it: Result<csv::StringRecord, _>| {
                         serde_json::Value::Array(
                             it.expect("TODO manage error in csv")

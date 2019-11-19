@@ -23,6 +23,7 @@ use serde_json;
 // }
 
 impl Vegalite {
+    /// Render the json for a graph
     pub fn to_string(&self) -> Result<String, serde_json::Error> {
         serde_json::to_string(self)
     }

@@ -9,6 +9,23 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+//! This crate provides a thin wrapper over vega lite v3, as well as a few helpers to help ingest data from
+//! various sources and builders to help build graphs. See
+//! [examples](https://github.com/procyon-rs/vega_lite_3.rs/tree/master/examples) for more help on how to use it.
+
+#![deny(
+    warnings,
+    missing_debug_implementations,
+    trivial_casts,
+    trivial_numeric_casts,
+    unsafe_code,
+    unstable_features,
+    unused_import_braces,
+    unused_qualifications,
+    missing_docs
+)]
+
 mod data;
 mod removable_value;
 mod schema;

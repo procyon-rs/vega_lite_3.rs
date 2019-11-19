@@ -10,6 +10,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#![allow(missing_docs, clippy::large_enum_variant)]
+
 use crate::removable_value::RemovableValue;
 use derive_builder::Builder;
 use serde::{Deserialize, Serialize};

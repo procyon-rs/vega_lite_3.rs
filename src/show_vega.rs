@@ -32,7 +32,7 @@ impl Showable for Vegalite {
     fn to_html_page(&self) -> Result<String, Error> {
         let dod = self.to_content_info()?;
         let content = VEGA_EMBED_HTML_TEMPLATE.replace("{{ spec_as_json }}", &dod.content);
-        Ok(content.into())
+        Ok(content)
     }
 }
 
