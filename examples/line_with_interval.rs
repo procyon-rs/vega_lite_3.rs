@@ -38,7 +38,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // the chart
     let chart = VegaliteBuilder::default()
         .title("Line Chart with Confidence Interval Band")
-        //.autosize(AutosizeType::Fit)
+        // .autosize(Autosize::Enum(AutosizeType::Fit))
         .height(500)
         .width(500)
         .data(
@@ -56,14 +56,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .build()?)
                 .build()?,
         )
-        //.build()?
         .layer(vec![
             LayerSpecBuilder::default()
                 .mark(Mark::Line)
                 .encoding(
                     LayerEncodingBuilder::default()
                         .y(YClassBuilder::default()
-                            .title("Mean of Miles per Gallon (95% CIs)")
                             .field("Miles_per_Gallon")
                             .def_type(StandardType::Quantitative)
                             .aggregate(Aggregate::Enum(AggregateOp::Mean))
@@ -72,7 +70,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 )
                 .build()?,
             LayerSpecBuilder::default()
-                .mark(Mark::Errorband)
+                // .mark(Mark::Errorband)
+                .mark(AnyMark::MarkDefClass(
+                    MarkDefClassBuilder::default()
+                        .def_type(Mark::Errorband)
+                        .extent(BoxPlotDefExtent::Enum(ExtentExtent::Ci))
+                        .build()?,
+                ))
                 .encoding(
                     LayerEncodingBuilder::default()
                         .y(YClassBuilder::default()
