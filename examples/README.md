@@ -92,4 +92,15 @@ Load the chart directly from the JSON spec.
 
 <img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/diverging_stacked_bar_chart.png">
 
+# Miscellaneous
 
+## [Without using builders](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/without_builders.rs)
+
+```
+cargo run --example without_builders
+```
+
+Build a graph without using the builders. This is not the recommended way as it's more verbose and expose more the
+internal structures and types, but it's possible when wanting to avoid `Result`s produced by the Builders.
+
+<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/stock_graph.png">
