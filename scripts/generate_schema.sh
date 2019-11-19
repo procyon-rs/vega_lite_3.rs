@@ -18,7 +18,7 @@ quicktype \
 echo '-- remove extra comments'
 sed -i '/^\/\/[^\/]*$/d' $file
 
-echo '-- inserting license'
+echo '-- inserting license and lint'
 cat << EOF > tmp_schema.rs
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,6 +31,9 @@ cat << EOF > tmp_schema.rs
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+#![allow(missing_docs, clippy::large_enum_variant)]
+
 EOF
 cat $file >> tmp_schema.rs
 mv tmp_schema.rs $file
@@ -52,8 +55,9 @@ echo '-- fix Box usage'
 sed -i 's/Option<Box>/Option<DefBox>/' $file
 sed -i 's/enum Box {/enum DefBox {/' $file
 
-echo '-- make everything clonable'
+echo '-- make everything clonable and default'
 sed -i 's/#\[derive(Debug, Serialize, Deserialize)\]/#[derive(Debug, Clone, Serialize, Deserialize)]/' $file
+sed -i 's/pub struct/#[derive(Default)] pub struct/' $file
 
 echo '-- setup builder'
 sed -i 's/use serde::/use derive_builder::Builder;\nuse serde::/' $file
