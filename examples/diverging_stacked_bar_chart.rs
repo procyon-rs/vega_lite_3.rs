@@ -26,19 +26,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .field("age")
                 .def_type(StandardType::Ordinal)
                 .sort(Sort::Enum(SortOrder::Descending))
-                .axis(AxisBuilder::default().build()?) // TODO: set axis to null, see issue #5
+                .axis(RemovableValue::Remove)
                 .build()?)
             .color(DefWithConditionMarkPropFieldDefStringNullBuilder::default()
                 .field("gender")
                 .def_with_condition_mark_prop_field_def_string_null_type(StandardType::Nominal)
                 .scale(ScaleBuilder::default().range(ScaleRange::UnionArray(vec![RangeRange::String("#e377c2".to_string()), RangeRange::String("#1f77b4".to_string())])).build()?)
-                .legend(LegendBuilder::default().orient(LegendOrient::Top).build()?)
-                        // TODO: set title of legend to null, see issue #5
+                .legend(LegendBuilder::default().orient(LegendOrient::Top).title(RemovableValue::Remove).build()?)
                 .build()?)
             .build()?)
         .config(ConfigBuilder::default()
-            .view(ViewConfigBuilder::default().stroke("".to_string()).build()?) // TODO: set stroke to null, see issue #5
-
+            .view(ViewConfigBuilder::default().stroke(RemovableValue::Remove).build()?)
             .axis(AxisConfigBuilder::default().grid(false).build()?)
             .build()?)
         .build()?;
