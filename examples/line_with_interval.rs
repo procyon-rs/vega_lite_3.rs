@@ -54,13 +54,36 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .def_type(StandardType::Temporal)
                     .time_unit(TimeUnit::Year)
                     .build()?)
-                .y(YClassBuilder::default()
-                    .aggregate(Aggregate::Enum(AggregateOp::Mean))
-                    .field("Miles_per_Gallon")
-                    .def_type(StandardType::Quantitative)
-                    .build()?)
                 .build()?,
         )
+        //.build()?
+        .layer(vec![
+            LayerSpecBuilder::default()
+                .mark(Mark::Line)
+                .encoding(
+                    LayerEncodingBuilder::default()
+                        .y(YClassBuilder::default()
+                            .title("Mean of Miles per Gallon (95% CIs)")
+                            .field("Miles_per_Gallon")
+                            .def_type(StandardType::Quantitative)
+                            .aggregate(Aggregate::Enum(AggregateOp::Mean))
+                            .build()?)
+                        .build()?,
+                )
+                .build()?,
+            LayerSpecBuilder::default()
+                .mark(Mark::Errorband)
+                .encoding(
+                    LayerEncodingBuilder::default()
+                        .y(YClassBuilder::default()
+                            .title("Mean of Miles per Gallon (95% CIs)")
+                            .field("Miles_per_Gallon")
+                            .def_type(StandardType::Quantitative)
+                            .build()?)
+                        .build()?,
+                )
+                .build()?,
+        ])
         .build()?;
 
     // display the chart using `showata`
