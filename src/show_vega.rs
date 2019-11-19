@@ -11,7 +11,7 @@
 // limitations under the License.
 //use vega_lite::Spec;
 use crate::Vegalite;
-use failure::Error;
+use anyhow::Error;
 use serde_json;
 use showata::ContentInfo;
 use showata::Showable;
