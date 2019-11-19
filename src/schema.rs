@@ -10,6 +10,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+use crate::removable_value::RemovableValue;
 use derive_builder::Builder;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -117,9 +118,9 @@ pub struct Vegalite {
     pub config: Option<Config>,
     /// An object describing the data source. Set to `null` to ignore the parent's data source.
     /// If no data is set, it is derived from the parent.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub data: Option<UrlData>,
+    pub data: RemovableValue<UrlData>,
     /// A global data store for named datasets. This is a mapping from names to inline datasets.
     /// This can be an array of objects or primitive values or a string. Arrays of primitive
     /// values are ingested as objects with a `data` property.
@@ -387,9 +388,9 @@ pub struct RowColBoolean {
 pub struct SpecClass {
     /// An object describing the data source. Set to `null` to ignore the parent's data source.
     /// If no data is set, it is derived from the parent.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub data: Option<UrlData>,
+    pub data: RemovableValue<UrlData>,
     /// Description of this mark for commenting purpose.
     #[serde(skip_serializing_if = "Option::is_none")]
     #[builder(default)]
@@ -595,6 +596,8 @@ pub struct SpecClass {
     /// A specification of the view that gets faceted.
     ///
     /// A specification of the view that gets repeated.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[builder(default)]
     pub spec: Option<Box<SpecClass>>,
     /// Definition for fields to be repeated.  One of:
     /// 1) An array of fields to be repeated.  If `"repeat"` is an array, the field can be
@@ -707,9 +710,9 @@ pub struct Spec {
     pub columns: Option<f64>,
     /// An object describing the data source. Set to `null` to ignore the parent's data source.
     /// If no data is set, it is derived from the parent.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub data: Option<UrlData>,
+    pub data: RemovableValue<UrlData>,
     /// Description of this mark for commenting purpose.
     #[serde(skip_serializing_if = "Option::is_none")]
     #[builder(default)]
@@ -932,9 +935,9 @@ pub struct DataFormat {
     /// [d3-time-format syntax](https://github.com/d3/d3-time-format#locale_format). UTC date
     /// format parsing is supported similarly (e.g., `{foo: "utc:'%m%d%Y'"}`). See more about
     /// [UTC time](https://vega.github.io/vega-lite/docs/timeunit.html#utc)
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub parse: Option<HashMap<String, Option<String>>>,
+    pub parse: RemovableValue<HashMap<String, Option<String>>>,
     /// Type of input data: `"json"`, `"csv"`, `"tsv"`, `"dsv"`.
     ///
     /// __Default value:__  The default format type is determined by the extension of the file
@@ -1223,9 +1226,9 @@ pub struct Encoding {
     #[builder(default)]
     pub text: Option<HrefClass>,
     /// The tooltip text to show upon mouse hover.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub tooltip: Option<Tooltip>,
+    pub tooltip: RemovableValue<Tooltip>,
     /// X coordinates of the marks, or width of horizontal `"bar"` and `"area"` without specified
     /// `x2` or `width`.
     ///
@@ -1389,9 +1392,9 @@ pub struct DefWithConditionMarkPropFieldDefStringNull {
     /// properties](https://vega.github.io/vega-lite/docs/legend.html) are applied.
     ///
     /// __See also:__ [`legend`](https://vega.github.io/vega-lite/docs/legend.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub legend: Option<Legend>,
+    pub legend: RemovableValue<Legend>,
     /// An object defining properties of the channel's scale, which is the function that
     /// transforms values in the data domain (numbers, dates, strings, etc) to visual values
     /// (pixels, colors, sizes) of the encoding channels.
@@ -1403,9 +1406,9 @@ pub struct DefWithConditionMarkPropFieldDefStringNull {
     /// properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.
     ///
     /// __See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub scale: Option<Scale>,
+    pub scale: RemovableValue<Scale>,
     /// Sort order for the encoded field.
     ///
     /// For continuous fields (quantitative or temporal), `sort` can be either `"ascending"` or
@@ -1434,9 +1437,9 @@ pub struct DefWithConditionMarkPropFieldDefStringNull {
     /// __Note:__ `null` is not supported for `row` and `column`.
     ///
     /// __See also:__ [`sort`](https://vega.github.io/vega-lite/docs/sort.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub sort: Option<Sort>,
+    pub sort: RemovableValue<Sort>,
     /// Time unit (e.g., `year`, `yearmonth`, `month`, `hours`) for a temporal field.
     /// or [a temporal field that gets casted as
     /// ordinal](https://vega.github.io/vega-lite/docs/type.html#cast).
@@ -1468,9 +1471,9 @@ pub struct DefWithConditionMarkPropFieldDefStringNull {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -1809,9 +1812,9 @@ pub struct ConditionalPredicateStringValueDefClass {
     /// properties](https://vega.github.io/vega-lite/docs/legend.html) are applied.
     ///
     /// __See also:__ [`legend`](https://vega.github.io/vega-lite/docs/legend.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub legend: Option<Legend>,
+    pub legend: RemovableValue<Legend>,
     /// An object defining properties of the channel's scale, which is the function that
     /// transforms values in the data domain (numbers, dates, strings, etc) to visual values
     /// (pixels, colors, sizes) of the encoding channels.
@@ -1823,9 +1826,9 @@ pub struct ConditionalPredicateStringValueDefClass {
     /// properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.
     ///
     /// __See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub scale: Option<Scale>,
+    pub scale: RemovableValue<Scale>,
     /// Sort order for the encoded field.
     ///
     /// For continuous fields (quantitative or temporal), `sort` can be either `"ascending"` or
@@ -1854,9 +1857,9 @@ pub struct ConditionalPredicateStringValueDefClass {
     /// __Note:__ `null` is not supported for `row` and `column`.
     ///
     /// __See also:__ [`sort`](https://vega.github.io/vega-lite/docs/sort.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub sort: Option<Sort>,
+    pub sort: RemovableValue<Sort>,
     /// Time unit (e.g., `year`, `yearmonth`, `month`, `hours`) for a temporal field.
     /// or [a temporal field that gets casted as
     /// ordinal](https://vega.github.io/vega-lite/docs/type.html#cast).
@@ -1888,9 +1891,9 @@ pub struct ConditionalPredicateStringValueDefClass {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -2271,9 +2274,9 @@ pub struct Legend {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// Horizontal text alignment for legend titles.
     ///
     /// __Default value:__ `"left"`.
@@ -2713,9 +2716,9 @@ pub struct EncodingSortField {
     #[builder(default)]
     pub op: Option<AggregateOp>,
     /// The sort order. One of `"ascending"` (default), `"descending"`, or `null` (no not sort).
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub order: Option<SortOrder>,
+    pub order: RemovableValue<SortOrder>,
     /// The [encoding channel](https://vega.github.io/vega-lite/docs/encoding.html#channels) to
     /// sort by (e.g., `"x"`, `"y"`)
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2806,9 +2809,9 @@ pub struct FacetFieldDef {
     /// __Default value:__ `"ascending"`
     ///
     /// __Note:__ `null` is not supported for `row` and `column`.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub sort: Option<SortArray>,
+    pub sort: RemovableValue<SortArray>,
     /// Time unit (e.g., `year`, `yearmonth`, `month`, `hours`) for a temporal field.
     /// or [a temporal field that gets casted as
     /// ordinal](https://vega.github.io/vega-lite/docs/type.html#cast).
@@ -2840,9 +2843,9 @@ pub struct FacetFieldDef {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -2999,9 +3002,9 @@ pub struct Header {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// Horizontal text alignment (to the anchor) of header titles.
     #[serde(rename = "titleAlign")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3102,9 +3105,9 @@ pub struct SortEncodingSortField {
     #[builder(default)]
     pub op: Option<AggregateOp>,
     /// The sort order. One of `"ascending"` (default), `"descending"`, or `null` (no not sort).
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub order: Option<SortOrder>,
+    pub order: RemovableValue<SortOrder>,
 }
 
 /// Field Def without scale (and without bin: "binned" support).
@@ -3195,9 +3198,9 @@ pub struct TypedFieldDef {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -3346,9 +3349,9 @@ pub struct DefWithConditionMarkPropFieldDefNumber {
     /// properties](https://vega.github.io/vega-lite/docs/legend.html) are applied.
     ///
     /// __See also:__ [`legend`](https://vega.github.io/vega-lite/docs/legend.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub legend: Option<Legend>,
+    pub legend: RemovableValue<Legend>,
     /// An object defining properties of the channel's scale, which is the function that
     /// transforms values in the data domain (numbers, dates, strings, etc) to visual values
     /// (pixels, colors, sizes) of the encoding channels.
@@ -3360,9 +3363,9 @@ pub struct DefWithConditionMarkPropFieldDefNumber {
     /// properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.
     ///
     /// __See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub scale: Option<Scale>,
+    pub scale: RemovableValue<Scale>,
     /// Sort order for the encoded field.
     ///
     /// For continuous fields (quantitative or temporal), `sort` can be either `"ascending"` or
@@ -3391,9 +3394,9 @@ pub struct DefWithConditionMarkPropFieldDefNumber {
     /// __Note:__ `null` is not supported for `row` and `column`.
     ///
     /// __See also:__ [`sort`](https://vega.github.io/vega-lite/docs/sort.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub sort: Option<Sort>,
+    pub sort: RemovableValue<Sort>,
     /// Time unit (e.g., `year`, `yearmonth`, `month`, `hours`) for a temporal field.
     /// or [a temporal field that gets casted as
     /// ordinal](https://vega.github.io/vega-lite/docs/type.html#cast).
@@ -3425,9 +3428,9 @@ pub struct DefWithConditionMarkPropFieldDefNumber {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -3560,9 +3563,9 @@ pub struct ConditionalPredicateNumberValueDefClass {
     /// properties](https://vega.github.io/vega-lite/docs/legend.html) are applied.
     ///
     /// __See also:__ [`legend`](https://vega.github.io/vega-lite/docs/legend.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub legend: Option<Legend>,
+    pub legend: RemovableValue<Legend>,
     /// An object defining properties of the channel's scale, which is the function that
     /// transforms values in the data domain (numbers, dates, strings, etc) to visual values
     /// (pixels, colors, sizes) of the encoding channels.
@@ -3574,9 +3577,9 @@ pub struct ConditionalPredicateNumberValueDefClass {
     /// properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.
     ///
     /// __See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub scale: Option<Scale>,
+    pub scale: RemovableValue<Scale>,
     /// Sort order for the encoded field.
     ///
     /// For continuous fields (quantitative or temporal), `sort` can be either `"ascending"` or
@@ -3605,9 +3608,9 @@ pub struct ConditionalPredicateNumberValueDefClass {
     /// __Note:__ `null` is not supported for `row` and `column`.
     ///
     /// __See also:__ [`sort`](https://vega.github.io/vega-lite/docs/sort.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub sort: Option<Sort>,
+    pub sort: RemovableValue<Sort>,
     /// Time unit (e.g., `year`, `yearmonth`, `month`, `hours`) for a temporal field.
     /// or [a temporal field that gets casted as
     /// ordinal](https://vega.github.io/vega-lite/docs/type.html#cast).
@@ -3639,9 +3642,9 @@ pub struct ConditionalPredicateNumberValueDefClass {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -3817,9 +3820,9 @@ pub struct HrefClass {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -4005,9 +4008,9 @@ pub struct ConditionalPredicateValueDefClass {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -4131,9 +4134,9 @@ pub struct LatitudeClass {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -4277,9 +4280,9 @@ pub struct Latitude2Class {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// A constant value in visual domain (e.g., `"red"` / "#0099ff" for color, values between
     /// `0` to `1` for opacity).
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4372,9 +4375,9 @@ pub struct OrderFieldDef {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -4498,9 +4501,9 @@ pub struct OrderFieldDefClass {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -4642,9 +4645,9 @@ pub struct DefWithConditionMarkPropFieldDefTypeForShapeStringNull {
     /// properties](https://vega.github.io/vega-lite/docs/legend.html) are applied.
     ///
     /// __See also:__ [`legend`](https://vega.github.io/vega-lite/docs/legend.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub legend: Option<Legend>,
+    pub legend: RemovableValue<Legend>,
     /// An object defining properties of the channel's scale, which is the function that
     /// transforms values in the data domain (numbers, dates, strings, etc) to visual values
     /// (pixels, colors, sizes) of the encoding channels.
@@ -4656,9 +4659,9 @@ pub struct DefWithConditionMarkPropFieldDefTypeForShapeStringNull {
     /// properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.
     ///
     /// __See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub scale: Option<Scale>,
+    pub scale: RemovableValue<Scale>,
     /// Sort order for the encoded field.
     ///
     /// For continuous fields (quantitative or temporal), `sort` can be either `"ascending"` or
@@ -4687,9 +4690,9 @@ pub struct DefWithConditionMarkPropFieldDefTypeForShapeStringNull {
     /// __Note:__ `null` is not supported for `row` and `column`.
     ///
     /// __See also:__ [`sort`](https://vega.github.io/vega-lite/docs/sort.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub sort: Option<Sort>,
+    pub sort: RemovableValue<Sort>,
     /// Time unit (e.g., `year`, `yearmonth`, `month`, `hours`) for a temporal field.
     /// or [a temporal field that gets casted as
     /// ordinal](https://vega.github.io/vega-lite/docs/type.html#cast).
@@ -4721,9 +4724,9 @@ pub struct DefWithConditionMarkPropFieldDefTypeForShapeStringNull {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -4838,9 +4841,9 @@ pub struct Conditional {
     /// properties](https://vega.github.io/vega-lite/docs/legend.html) are applied.
     ///
     /// __See also:__ [`legend`](https://vega.github.io/vega-lite/docs/legend.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub legend: Option<Legend>,
+    pub legend: RemovableValue<Legend>,
     /// An object defining properties of the channel's scale, which is the function that
     /// transforms values in the data domain (numbers, dates, strings, etc) to visual values
     /// (pixels, colors, sizes) of the encoding channels.
@@ -4852,9 +4855,9 @@ pub struct Conditional {
     /// properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.
     ///
     /// __See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub scale: Option<Scale>,
+    pub scale: RemovableValue<Scale>,
     /// Sort order for the encoded field.
     ///
     /// For continuous fields (quantitative or temporal), `sort` can be either `"ascending"` or
@@ -4883,9 +4886,9 @@ pub struct Conditional {
     /// __Note:__ `null` is not supported for `row` and `column`.
     ///
     /// __See also:__ [`sort`](https://vega.github.io/vega-lite/docs/sort.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub sort: Option<Sort>,
+    pub sort: RemovableValue<Sort>,
     /// Time unit (e.g., `year`, `yearmonth`, `month`, `hours`) for a temporal field.
     /// or [a temporal field that gets casted as
     /// ordinal](https://vega.github.io/vega-lite/docs/type.html#cast).
@@ -4917,9 +4920,9 @@ pub struct Conditional {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -5067,9 +5070,9 @@ pub struct TextFieldDef {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -5241,9 +5244,9 @@ pub struct DefWithConditionTextFieldDefValue {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -5313,9 +5316,9 @@ pub struct XClass {
     /// properties](https://vega.github.io/vega-lite/docs/axis.html) are applied.
     ///
     /// __See also:__ [`axis`](https://vega.github.io/vega-lite/docs/axis.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub axis: Option<Axis>,
+    pub axis: RemovableValue<Axis>,
     /// A flag for binning a `quantitative` field, [an object defining binning
     /// parameters](https://vega.github.io/vega-lite/docs/bin.html#params), or indicating that
     /// the data for `x` or `y` channel are binned before they are imported into Vega-Lite
@@ -5374,9 +5377,9 @@ pub struct XClass {
     /// properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.
     ///
     /// __See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub scale: Option<Scale>,
+    pub scale: RemovableValue<Scale>,
     /// Sort order for the encoded field.
     ///
     /// For continuous fields (quantitative or temporal), `sort` can be either `"ascending"` or
@@ -5405,9 +5408,9 @@ pub struct XClass {
     /// __Note:__ `null` is not supported for `row` and `column`.
     ///
     /// __See also:__ [`sort`](https://vega.github.io/vega-lite/docs/sort.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub sort: Option<Sort>,
+    pub sort: RemovableValue<Sort>,
     /// Type of stacking offset if the field should be stacked.
     /// `stack` is only applicable for `x` and `y` channels with continuous domains.
     /// For example, `stack` of `y` can be used to customize stacking for a vertical bar chart.
@@ -5465,9 +5468,9 @@ pub struct XClass {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -5887,9 +5890,9 @@ pub struct Axis {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// Horizontal text alignment of axis titles.
     #[serde(rename = "titleAlign")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -6133,9 +6136,9 @@ pub struct X2Class {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// A constant value in visual domain (e.g., `"red"` / "#0099ff" for color, values between
     /// `0` to `1` for opacity).
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -6170,9 +6173,9 @@ pub struct YClass {
     /// properties](https://vega.github.io/vega-lite/docs/axis.html) are applied.
     ///
     /// __See also:__ [`axis`](https://vega.github.io/vega-lite/docs/axis.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub axis: Option<Axis>,
+    pub axis: RemovableValue<Axis>,
     /// A flag for binning a `quantitative` field, [an object defining binning
     /// parameters](https://vega.github.io/vega-lite/docs/bin.html#params), or indicating that
     /// the data for `x` or `y` channel are binned before they are imported into Vega-Lite
@@ -6231,9 +6234,9 @@ pub struct YClass {
     /// properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.
     ///
     /// __See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub scale: Option<Scale>,
+    pub scale: RemovableValue<Scale>,
     /// Sort order for the encoded field.
     ///
     /// For continuous fields (quantitative or temporal), `sort` can be either `"ascending"` or
@@ -6262,9 +6265,9 @@ pub struct YClass {
     /// __Note:__ `null` is not supported for `row` and `column`.
     ///
     /// __See also:__ [`sort`](https://vega.github.io/vega-lite/docs/sort.html) documentation.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub sort: Option<Sort>,
+    pub sort: RemovableValue<Sort>,
     /// Type of stacking offset if the field should be stacked.
     /// `stack` is only applicable for `x` and `y` channels with continuous domains.
     /// For example, `stack` of `y` can be used to customize stacking for a vertical bar chart.
@@ -6322,9 +6325,9 @@ pub struct YClass {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -6457,9 +6460,9 @@ pub struct Y2Class {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// A constant value in visual domain (e.g., `"red"` / "#0099ff" for color, values between
     /// `0` to `1` for opacity).
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -6556,9 +6559,9 @@ pub struct Facet {
     /// __Default value:__ `"ascending"`
     ///
     /// __Note:__ `null` is not supported for `row` and `column`.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub sort: Option<SortArray>,
+    pub sort: RemovableValue<SortArray>,
     /// Time unit (e.g., `year`, `yearmonth`, `month`, `hours`) for a temporal field.
     /// or [a temporal field that gets casted as
     /// ordinal](https://vega.github.io/vega-lite/docs/type.html#cast).
@@ -6590,9 +6593,9 @@ pub struct Facet {
     ///
     /// 2) If both field definition's `title` and axis, header, or legend `title` are defined,
     /// axis/header/legend title will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<String>,
+    pub title: RemovableValue<String>,
     /// The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or
     /// `"nominal"`).
     /// It can also be a `"geojson"` type for encoding
@@ -6650,9 +6653,9 @@ pub struct Facet {
 pub struct LayerSpec {
     /// An object describing the data source. Set to `null` to ignore the parent's data source.
     /// If no data is set, it is derived from the parent.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub data: Option<UrlData>,
+    pub data: RemovableValue<UrlData>,
     /// Description of this mark for commenting purpose.
     #[serde(skip_serializing_if = "Option::is_none")]
     #[builder(default)]
@@ -6928,9 +6931,9 @@ pub struct LayerEncoding {
     #[builder(default)]
     pub text: Option<HrefClass>,
     /// The tooltip text to show upon mouse hover.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub tooltip: Option<Tooltip>,
+    pub tooltip: RemovableValue<Tooltip>,
     /// X coordinates of the marks, or width of horizontal `"bar"` and `"area"` without specified
     /// `x2` or `width`.
     ///
@@ -7414,9 +7417,9 @@ pub struct MarkDefClass {
     /// - If `tooltip` is `{"content": "data"}`, then all fields that appear in the highlighted
     /// data point will be used.
     /// - If set to `null`, then no tooltip will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub tooltip: Option<TooltipUnion>,
+    pub tooltip: RemovableValue<TooltipUnion>,
     /// Width of the marks.
     #[serde(skip_serializing_if = "Option::is_none")]
     #[builder(default)]
@@ -7752,9 +7755,9 @@ pub struct MarkConfig {
     /// - If `tooltip` is `{"content": "data"}`, then all fields that appear in the highlighted
     /// data point will be used.
     /// - If set to `null`, then no tooltip will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub tooltip: Option<TooltipUnion>,
+    pub tooltip: RemovableValue<TooltipUnion>,
     /// Width of the marks.
     #[serde(skip_serializing_if = "Option::is_none")]
     #[builder(default)]
@@ -8086,9 +8089,9 @@ pub struct OverlayMarkDef {
     /// - If `tooltip` is `{"content": "data"}`, then all fields that appear in the highlighted
     /// data point will be used.
     /// - If set to `null`, then no tooltip will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub tooltip: Option<TooltipUnion>,
+    pub tooltip: RemovableValue<TooltipUnion>,
     /// Width of the marks.
     #[serde(skip_serializing_if = "Option::is_none")]
     #[builder(default)]
@@ -8179,9 +8182,9 @@ pub struct Projection {
     /// the viewport, `y0` is the top, `x1` is the right and `y1` is the bottom. If `null`, no
     /// viewport clipping is performed.
     #[serde(rename = "clipExtent")]
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub clip_extent: Option<Vec<Vec<f64>>>,
+    pub clip_extent: RemovableValue<Vec<Vec<f64>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     #[builder(default)]
     pub coefficient: Option<f64>,
@@ -9036,9 +9039,9 @@ pub struct SortField {
     pub field: Option<String>,
     /// Whether to sort the field in ascending or descending order. One of `"ascending"`
     /// (default), `"descending"`, or `null` (no not sort).
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub order: Option<SortOrder>,
+    pub order: RemovableValue<SortOrder>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, Builder)]
@@ -9346,9 +9349,9 @@ pub struct Config {
     /// - If `null`, all data items are included. In this case, invalid values will be
     /// interpreted as zeroes.
     #[serde(rename = "invalidValues")]
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub invalid_values: Option<InvalidValues>,
+    pub invalid_values: RemovableValue<InvalidValues>,
     /// Legend configuration, which determines default properties for all
     /// [legends](https://vega.github.io/vega-lite/docs/legend.html). For a full list of legend
     /// configuration options, please see the [corresponding section of in the legend
@@ -9768,9 +9771,9 @@ pub struct AreaConfig {
     /// - If `tooltip` is `{"content": "data"}`, then all fields that appear in the highlighted
     /// data point will be used.
     /// - If set to `null`, then no tooltip will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub tooltip: Option<TooltipUnion>,
+    pub tooltip: RemovableValue<TooltipUnion>,
     /// Width of the marks.
     #[serde(skip_serializing_if = "Option::is_none")]
     #[builder(default)]
@@ -10128,9 +10131,9 @@ pub struct AxisConfig {
     #[builder(default)]
     pub tick_width: Option<f64>,
     /// Set to null to disable title for the axis, legend, or header.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<serde_json::Value>,
+    pub title: RemovableValue<serde_json::Value>,
     /// Horizontal text alignment of axis titles.
     #[serde(rename = "titleAlign")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -10498,9 +10501,9 @@ pub struct RectConfig {
     /// - If `tooltip` is `{"content": "data"}`, then all fields that appear in the highlighted
     /// data point will be used.
     /// - If set to `null`, then no tooltip will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub tooltip: Option<TooltipUnion>,
+    pub tooltip: RemovableValue<TooltipUnion>,
     /// Width of the marks.
     #[serde(skip_serializing_if = "Option::is_none")]
     #[builder(default)]
@@ -10812,9 +10815,9 @@ pub struct HeaderConfig {
     #[builder(default)]
     pub short_time_labels: Option<bool>,
     /// Set to null to disable title for the axis, legend, or header.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<serde_json::Value>,
+    pub title: RemovableValue<serde_json::Value>,
     /// Horizontal text alignment (to the anchor) of header titles.
     #[serde(rename = "titleAlign")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -11245,9 +11248,9 @@ pub struct LegendConfig {
     #[builder(default)]
     pub symbol_type: Option<String>,
     /// Set to null to disable title for the axis, legend, or header.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub title: Option<serde_json::Value>,
+    pub title: RemovableValue<serde_json::Value>,
     /// Horizontal text alignment for legend titles.
     ///
     /// __Default value:__ `"left"`.
@@ -11702,9 +11705,9 @@ pub struct LineConfig {
     /// - If `tooltip` is `{"content": "data"}`, then all fields that appear in the highlighted
     /// data point will be used.
     /// - If set to `null`, then no tooltip will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub tooltip: Option<TooltipUnion>,
+    pub tooltip: RemovableValue<TooltipUnion>,
     /// Width of the marks.
     #[serde(skip_serializing_if = "Option::is_none")]
     #[builder(default)]
@@ -12515,9 +12518,9 @@ pub struct BaseMarkConfig {
     #[builder(default)]
     pub theta: Option<f64>,
     /// The tooltip text to show upon mouse hover.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub tooltip: Option<serde_json::Value>,
+    pub tooltip: RemovableValue<serde_json::Value>,
     /// Width of the marks.
     #[serde(skip_serializing_if = "Option::is_none")]
     #[builder(default)]
@@ -12828,9 +12831,9 @@ pub struct TextConfig {
     /// - If `tooltip` is `{"content": "data"}`, then all fields that appear in the highlighted
     /// data point will be used.
     /// - If set to `null`, then no tooltip will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub tooltip: Option<TooltipUnion>,
+    pub tooltip: RemovableValue<TooltipUnion>,
     /// Width of the marks.
     #[serde(skip_serializing_if = "Option::is_none")]
     #[builder(default)]
@@ -13149,9 +13152,9 @@ pub struct TickConfig {
     /// - If `tooltip` is `{"content": "data"}`, then all fields that appear in the highlighted
     /// data point will be used.
     /// - If set to `null`, then no tooltip will be used.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub tooltip: Option<TooltipUnion>,
+    pub tooltip: RemovableValue<TooltipUnion>,
     /// Width of the marks.
     #[serde(skip_serializing_if = "Option::is_none")]
     #[builder(default)]
@@ -13314,9 +13317,9 @@ pub struct ViewConfig {
     /// The stroke color.
     ///
     /// __Default value:__ `"#ddd"`
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "RemovableValue::is_default")]
     #[builder(default)]
-    pub stroke: Option<String>,
+    pub stroke: RemovableValue<String>,
     /// The stroke cap for line ending style. One of `"butt"`, `"round"`, or `"square"`.
     ///
     /// __Default value:__ `"square"`

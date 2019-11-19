@@ -38,6 +38,13 @@ mv tmp_schema.rs $file
 echo '-- fix serde import'
 sed -i 's/extern crate serde_json;/use serde::{Deserialize, Serialize};/' $file
 
+echo '-- set fields that have special meaning for null'
+sed -i 's/use serde::/use crate::removable_value::RemovableValue;\nuse serde::/' $file
+python3 scripts/if_null_fields.py $file tmp_schema.rs && mv tmp_schema.rs $file
+
+echo '-- custom changes'
+python3 scripts/custom_changes.py $file tmp_schema.rs && mv tmp_schema.rs $file
+
 echo '-- skip serializing None by default'
 sed -i 's/pub \(\w*\): Option/#[serde(skip_serializing_if = "Option::is_none")] pub \1: Option/' $file
 
@@ -58,9 +65,6 @@ sed -i "s/#\[builder(default)\] pub schema: Option/#[builder(default = \"Some(\\
 sed -i 's/pub \(\w*\): \([^<]*\),$/#[serde(skip_serializing_if = "Option::is_none")] #[builder(default)] pub \1: Option<\2>,/' $file
 
 echo '-- simplification'
-python3 scripts/box_infinite_type.py $file tmp_schema.rs
-mv tmp_schema.rs $file
-
 sed -i 's/pub enum InlineDataset /#[allow(unused)]enum UnusedInlineDataset /' $file
 sed -i 's/<InlineDataset>/<serde_json::value::Value>/' $file
 sed -i 's/BoxPlotDefClass/MarkDefClass/g' $file

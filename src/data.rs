@@ -9,6 +9,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+use crate::RemovableValue;
 use crate::UrlData;
 use crate::UrlDataBuilder;
 use crate::UrlDataInlineDataset;
@@ -28,15 +29,6 @@ fn iter_to_data_inline_dataset<T>(v: impl Iterator<Item = T>) -> UrlDataInlineDa
 where
     T: Serialize,
 {
-    // let values = v.map(|it|{
-    //     match serde_json.to_json(it) {
-    //         v: bool => InlineDataset::Bool(v),
-    //         v: Double(f64),
-    // String(String),
-
-    //         v => AnythingMap(HashMap<String, Option<serde_json::Value>>),
-    //     }
-    // })
     let values = v
         .map(serde_json::to_value)
         .collect::<Result<Vec<_>, _>>()
@@ -52,6 +44,14 @@ where
         iter_to_data(v.iter())
     }
 }
+impl<T> From<&[T]> for RemovableValue<UrlData>
+where
+    T: Serialize,
+{
+    fn from(v: &[T]) -> Self {
+        RemovableValue::Specified(v.into())
+    }
+}
 
 impl<T> From<&Vec<T>> for UrlData
 where
@@ -59,6 +59,15 @@ where
 {
     fn from(v: &Vec<T>) -> Self {
         iter_to_data(v.iter())
+    }
+}
+
+impl<T> From<&Vec<T>> for RemovableValue<UrlData>
+where
+    T: Serialize,
+{
+    fn from(v: &Vec<T>) -> Self {
+        RemovableValue::Specified(v.into())
     }
 }
 
@@ -74,6 +83,18 @@ where
 {
     fn from(v: ArrayBase<S, D>) -> Self {
         iter_to_data(v.genrows().into_iter())
+    }
+}
+
+#[cfg(feature = "ndarray")]
+impl<A, D, S> From<ArrayBase<S, D>> for RemovableValue<UrlData>
+where
+    A: Serialize,
+    D: ndarray::Dimension,
+    S: ndarray::Data<Elem = A>,
+{
+    fn from(v: ArrayBase<S, D>) -> Self {
+        RemovableValue::Specified(v.into())
     }
 }
 
@@ -102,5 +123,15 @@ where
             ))
             .build()
             .unwrap()
+    }
+}
+
+#[cfg(feature = "csv")]
+impl<R> From<Reader<R>> for RemovableValue<UrlData>
+where
+    R: std::io::Read,
+{
+    fn from(v: Reader<R>) -> Self {
+        RemovableValue::Specified(v.into())
     }
 }

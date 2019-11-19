@@ -10,6 +10,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 mod data;
+mod removable_value;
 mod schema;
 mod string;
 
@@ -19,6 +20,7 @@ mod show_vega;
 pub use showata::Showable;
 
 pub use data::*;
+pub use removable_value::RemovableValue;
 pub use schema::*;
 pub use string::*;
 
