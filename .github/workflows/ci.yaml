@@ -35,6 +35,6 @@ jobs:
       - uses: actions/checkout@v1
       - name: Run tests
         run: cargo make --profile ci-static-code-analysis-tasks --env TARGET=${{matrix.os.target}} ci-flow
-        # env:
-        #   CARGO_MAKE_RUN_CODECOV: "true"
-        #   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        env:
+          CARGO_MAKE_RUN_CODECOV: "true"
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

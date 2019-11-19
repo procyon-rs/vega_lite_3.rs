@@ -5,6 +5,7 @@
 [![Release Doc](https://docs.rs/vega_lite_3/badge.svg)](https://docs.rs/vega_lite_3)
 
 [![Actions Status](https://github.com/procyon-rs/vega_lite_3.rs/workflows/ci-flow/badge.svg)](https://github.com/procyon-rs/vega_lite_3.rs/actions)
+[![codecov](https://codecov.io/gh/procyon-rs/vega_lite_3.rs/branch/master/graph/badge.svg)](https://codecov.io/gh/procyon-rs/vega_lite_3.rs)
 
 A Rust api for vega-lite v3. Use it to generate vega-lite json, to display result in your Browser or in Jupyter (via [showata](https://crates.io/crates/showata)).
 
@@ -43,11 +44,11 @@ chart.show()?;
 
 ## Features
 
-| name      | enabled by default | functionnality |
-|-----------|--------------------|----------------|
+| name      | enabled by default | functionnality                                     |
+| --------- | ------------------ | -------------------------------------------------- |
 | show_vega | yes                | can display charts in the browser or in a notebook |
-| csv       | yes                | can load data from a csv |
-| ndarray   | yes                | can load data from a ndarray |
+| csv       | yes                | can load data from a csv                           |
+| ndarray   | yes                | can load data from a ndarray                       |
 
 ## Links
 
