@@ -2,7 +2,7 @@
 
 [env]
 RUST_TEST_THREADS = "1"
-CARGO_MAKE_TEST_COVERAGE_BINARY_FILTER = "cli-[a-z0-9]*$\\|makers-[a-z0-9]*$\\|${CARGO_MAKE_TEST_COVERAGE_DEFAULT_BINARY_FILTER}"
+CARGO_MAKE_TEST_COVERAGE_BINARY_FILTER = "example-.*$\\|cli-[a-z0-9]*$\\|makers-[a-z0-9]*$\\|${CARGO_MAKE_TEST_COVERAGE_DEFAULT_BINARY_FILTER}"
 SHOWATA_MEDIUM="Noop"
 
 [tasks.publish]
@@ -14,4 +14,10 @@ SHOWATA_MEDIUM = "BROWSER"
 [tasks.run-all-examples]
 script = [
     "for example in examples/*.rs; do echo $example; cargo run --example $(basename $example | cut -f 1 -d '.'); done"
+]
+
+[tasks.pre-coverage]
+# copy examples to directory where we look for executables for coverage
+script = [
+    "find target/debug/examples -regex 'target/debug/examples/[a-z_]*-[a-f0-9]\{16\}' | xargs -I % sh scripts/make_example_available_for_coverage.sh %"
 ]
