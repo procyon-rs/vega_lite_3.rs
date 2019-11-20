@@ -46,6 +46,17 @@ Loads data from an URL, displaying the aggregated count by type by month as a st
 cargo run --example stock_graph
 ```
 
+## [Line with confidence Interval](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/line_with_interval.rs)
+
+```
+cargo run --example line_with_interval.rs
+```
+
+
+Loads data from an URL, displaying the aggregated mean by year with the variance on a two level layers as a line graph.
+<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/line_with_interval.png">
+
+`
 Loads data from a `csv`, deserializing to a `struct`, and display the graph as a line.
 
 <img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/stock_graph.png">
