@@ -19,5 +19,5 @@ script = [
 [tasks.pre-coverage]
 # copy examples to directory where we look for executables for coverage
 script = [
-    "find target/debug/examples -regex 'target/debug/examples/[a-z_]*-[a-f0-9]\{16\}' | xargs -I % sh scripts/make_example_available_for_coverage.sh %"
+    "find target/debug/examples -regex 'target/debug/examples/[a-z_]*-[a-f0-9]\\{16\\}' | xargs -I % sh scripts/make_example_available_for_coverage.sh %"
 ]
