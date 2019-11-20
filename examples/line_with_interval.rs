@@ -39,8 +39,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let chart = VegaliteBuilder::default()
         .title("Line Chart with Confidence Interval Band")
         // .autosize(Autosize::Enum(AutosizeType::Fit))
-        .height(500)
-        .width(500)
+        .height(200)
+        .width(300)
         .data(
             UrlDataBuilder::default()
                 .url("https://raw.githubusercontent.com/vega/vega-datasets/master/data/cars.json")
