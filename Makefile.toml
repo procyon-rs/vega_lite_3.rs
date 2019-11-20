@@ -23,8 +23,11 @@ script = [
     rm -rf target/debug/examples
     cargo build --examples
     ls target/debug/examples
+    sleep 1
     find target/debug/examples
-    find target/debug/examples -regex 'target/debug/examples/[a-z_]*-[a-f0-9]\\{16\\}'
-    find target/debug/examples -regex 'target/debug/examples/[a-z_]*-[a-f0-9]\\{16\\}' | xargs -I % sh scripts/make_example_available_for_coverage.sh %
+    sleep 1
+    find target/debug/examples -regex 'target/debug/examples/[a-z_]*-[a-f0-9]*'
+    sleep 1
+    find target/debug/examples -regex 'target/debug/examples/[a-z_]*-[a-f0-9]*' | xargs -I % sh scripts/make_example_available_for_coverage.sh %
     '''
 ]
