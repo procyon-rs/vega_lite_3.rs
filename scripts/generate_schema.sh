@@ -80,5 +80,9 @@ sed -i 's/pub enum BoxPlot /pub enum Mark /' $file
 sed -i 's/pub \(\w*\): Box<Option<\(\S*\)>>/#[serde(skip_serializing_if = "Option::is_none")] #[builder(default)] pub \1: Option<\2>/' $file
 sed -i 's/pub filter: Option<Box<PurpleLogicalOperandPredicate>>,/pub filter: Option<PurpleLogicalOperandPredicate>,/' $file
 
+echo '-- From for enums'
+sed -i 's/use serde::/use derive_more::From;\nuse serde::/' $file
+sed -i 's/#\[serde(untagged)\]$/#[serde(untagged)] #[derive(From)]/' $file
+
 cargo fmt -- $file
 

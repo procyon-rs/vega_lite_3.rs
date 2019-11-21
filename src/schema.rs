@@ -14,6 +14,7 @@
 
 use crate::removable_value::RemovableValue;
 use derive_builder::Builder;
+use derive_more::From;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -13390,6 +13391,7 @@ pub struct ViewConfig {
 /// __Default value:__ `"all"`.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum AlignUnion {
     Enum(LayoutAlign),
     RowColLayoutAlign(RowColLayoutAlign),
@@ -13404,6 +13406,7 @@ pub enum AlignUnion {
 /// __Default value__: `pad`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Autosize {
     AutoSizeParams(AutoSizeParams),
     Enum(AutosizeType),
@@ -13411,6 +13414,7 @@ pub enum Autosize {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum VegaliteCenter {
     Bool(bool),
     RowColBoolean(RowColBoolean),
@@ -13419,6 +13423,7 @@ pub enum VegaliteCenter {
 /// Generate graticule GeoJSON data for geographic reference lines.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Graticule {
     Bool(bool),
     GraticuleParams(GraticuleParams),
@@ -13427,6 +13432,7 @@ pub enum Graticule {
 /// Generate sphere GeoJSON data for the full globe.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum SphereUnion {
     Bool(bool),
     SphereClass(SphereClass),
@@ -13438,6 +13444,7 @@ pub enum SphereUnion {
 /// parsed according to the specified format type.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum UrlDataInlineDataset {
     AnythingMap(HashMap<String, Option<serde_json::Value>>),
     String(String),
@@ -13446,6 +13453,7 @@ pub enum UrlDataInlineDataset {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 #[allow(unused)]
 enum UnusedInlineDataset {
     AnythingMap(HashMap<String, Option<serde_json::Value>>),
@@ -13463,6 +13471,7 @@ enum UnusedInlineDataset {
 /// documentation.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Aggregate {
     ArgmDef(ArgmDef),
     Enum(AggregateOp),
@@ -13471,6 +13480,7 @@ pub enum Aggregate {
 /// An object indicating bin properties, or simply `true` for using default bin parameters.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum PurpleBin {
     BinParams(BinParams),
     Bool(bool),
@@ -13478,6 +13488,7 @@ pub enum PurpleBin {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum ColorCondition {
     ConditionalPredicateStringValueDefClass(ConditionalPredicateStringValueDefClass),
     ConditionalStringValueDefArray(Vec<ConditionalStringValueDef>),
@@ -13489,6 +13500,7 @@ pub enum ColorCondition {
 /// [composed selections](https://vega.github.io/vega-lite/docs/selection.html#compose).
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum SelectionOperandElement {
     Selection(Selection),
     String(String),
@@ -13500,6 +13512,7 @@ pub enum SelectionOperandElement {
 /// [composed selections](https://vega.github.io/vega-lite/docs/selection.html#compose).
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum PurpleSelectionOperand {
     Selection(Selection),
     String(String),
@@ -13528,6 +13541,7 @@ pub enum PurpleSelectionOperand {
 /// 4) a logical operand that combines (1), (2), or (3).
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum LogicalOperandPredicateElement {
     Predicate(Predicate),
     String(String),
@@ -13556,6 +13570,7 @@ pub enum LogicalOperandPredicateElement {
 /// 4) a logical operand that combines (1), (2), or (3).
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum PurpleLogicalOperandPredicate {
     Predicate(Predicate),
     String(String),
@@ -13563,6 +13578,7 @@ pub enum PurpleLogicalOperandPredicate {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum EqualUnion {
     Bool(bool),
     DateTime(DateTime),
@@ -13577,6 +13593,7 @@ pub enum EqualUnion {
 /// `month`, or `date`.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Day {
     Double(f64),
     String(String),
@@ -13587,6 +13604,7 @@ pub enum Day {
 /// short month name (e.g., `"Jan"`).
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Month {
     Double(f64),
     String(String),
@@ -13594,6 +13612,7 @@ pub enum Month {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Lt {
     DateTime(DateTime),
     Double(f64),
@@ -13602,6 +13621,7 @@ pub enum Lt {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum SelectionInitIntervalElement {
     Bool(bool),
     DateTime(DateTime),
@@ -13611,6 +13631,7 @@ pub enum SelectionInitIntervalElement {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum RangeElement {
     DateTime(DateTime),
     Double(f64),
@@ -13637,6 +13658,7 @@ pub enum RangeElement {
 /// reference.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Field {
     RepeatRef(RepeatRef),
     String(String),
@@ -13667,6 +13689,7 @@ pub enum Field {
 /// ..., `900` where `"normal"` = `400` and `"bold"` = `700`).
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum FontWeight {
     Double(f64),
     Enum(FontWeightEnum),
@@ -13698,6 +13721,7 @@ pub enum FontWeight {
 /// __Default value:__ `true`.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum LabelOverlap {
     Bool(bool),
     Enum(LabelOverlapEnum),
@@ -13724,6 +13748,7 @@ pub enum LabelOverlap {
 /// domain.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum DomainUnion {
     DomainClass(DomainClass),
     Enum(Domain),
@@ -13742,6 +13767,7 @@ pub enum DomainUnion {
 /// * __Default value:__ `hcl`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum InterpolateUnion {
     Enum(ScaleInterpolate),
     ScaleInterpolateParams(ScaleInterpolateParams),
@@ -13768,6 +13794,7 @@ pub enum InterpolateUnion {
 /// __Default value:__ `true` for unbinned _quantitative_ fields; `false` otherwise.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum NiceUnion {
     Bool(bool),
     Double(f64),
@@ -13802,6 +13829,7 @@ pub enum NiceUnion {
 /// scales.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum ScaleRange {
     String(String),
     UnionArray(Vec<RangeRange>),
@@ -13809,6 +13837,7 @@ pub enum ScaleRange {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum RangeRange {
     Double(f64),
     String(String),
@@ -13828,6 +13857,7 @@ pub enum RangeRange {
 /// Scheme](https://vega.github.io/vega/docs/schemes/#reference) reference.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Scheme {
     SchemeParams(SchemeParams),
     String(String),
@@ -13863,6 +13893,7 @@ pub enum Scheme {
 /// __See also:__ [`sort`](https://vega.github.io/vega-lite/docs/sort.html) documentation.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Sort {
     EncodingSortField(EncodingSortField),
     Enum(SortOrder),
@@ -13893,6 +13924,7 @@ pub enum Sort {
 /// __Note:__ `null` is not supported for `row` and `column`.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum SortArray {
     Enum(SortOrder),
     SortEncodingSortField(SortEncodingSortField),
@@ -13901,6 +13933,7 @@ pub enum SortArray {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Detail {
     TypedFieldDef(TypedFieldDef),
     TypedFieldDefArray(Vec<TypedFieldDef>),
@@ -13908,6 +13941,7 @@ pub enum Detail {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum FluffyBin {
     BinParams(BinParams),
     Bool(bool),
@@ -13916,6 +13950,7 @@ pub enum FluffyBin {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum FillOpacityCondition {
     ConditionalNumberValueDefArray(Vec<ConditionalNumberValueDef>),
     ConditionalPredicateNumberValueDefClass(ConditionalPredicateNumberValueDefClass),
@@ -13923,6 +13958,7 @@ pub enum FillOpacityCondition {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum HrefCondition {
     ConditionalPredicateValueDefClass(ConditionalPredicateValueDefClass),
     ConditionalValueDefArray(Vec<ConditionalValueDef>),
@@ -13932,6 +13968,7 @@ pub enum HrefCondition {
 /// `0` to `1` for opacity).
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Value {
     Bool(bool),
     Double(f64),
@@ -13940,6 +13977,7 @@ pub enum Value {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Order {
     OrderFieldDefArray(Vec<OrderFieldDef>),
     OrderFieldDefClass(OrderFieldDefClass),
@@ -13947,6 +13985,7 @@ pub enum Order {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum ConditionUnion {
     Conditional(Conditional),
     ConditionalStringValueDefArray(Vec<ConditionalStringValueDef>),
@@ -13954,6 +13993,7 @@ pub enum ConditionUnion {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Tooltip {
     DefWithConditionTextFieldDefValue(DefWithConditionTextFieldDefValue),
     TextFieldDefArray(Vec<TextFieldDef>),
@@ -13978,6 +14018,7 @@ pub enum Tooltip {
 /// __Default value:__ `true` for axis of a continuous x-scale. Otherwise, `false`.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Label {
     Bool(bool),
     Double(f64),
@@ -13985,6 +14026,7 @@ pub enum Label {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Keyvals {
     AnythingArray(Vec<Option<serde_json::Value>>),
     ImputeSequence(ImputeSequence),
@@ -14015,6 +14057,7 @@ pub enum Keyvals {
 /// __See also:__ [`stack`](https://vega.github.io/vega-lite/docs/stack.html) documentation.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Stack {
     Bool(bool),
     Enum(StackOffset),
@@ -14022,6 +14065,7 @@ pub enum Stack {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum XUnion {
     Double(f64),
     Enum(XEnum),
@@ -14029,6 +14073,7 @@ pub enum XUnion {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum YUnion {
     Double(f64),
     Enum(YEnum),
@@ -14040,6 +14085,7 @@ pub enum YUnion {
 /// object](https://vega.github.io/vega-lite/docs/mark.html#mark-def).
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum AnyMark {
     MarkDefClass(MarkDefClass),
     Enum(Mark),
@@ -14047,6 +14093,7 @@ pub enum AnyMark {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum DefBox {
     Bool(bool),
     MarkConfig(MarkConfig),
@@ -14054,6 +14101,7 @@ pub enum DefBox {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum TooltipUnion {
     Bool(bool),
     Double(f64),
@@ -14063,6 +14111,7 @@ pub enum TooltipUnion {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum BoxPlotDefExtent {
     Double(f64),
     Enum(ExtentExtent),
@@ -14070,6 +14119,7 @@ pub enum BoxPlotDefExtent {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Line {
     Bool(bool),
     OverlayMarkDef(OverlayMarkDef),
@@ -14102,6 +14152,7 @@ pub enum Line {
 /// __Note:__ Any specified view background properties will augment the default style.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Style {
     String(String),
     StringArray(Vec<String>),
@@ -14109,6 +14160,7 @@ pub enum Style {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum PointUnion {
     Bool(bool),
     Enum(PointEnum),
@@ -14117,6 +14169,7 @@ pub enum PointUnion {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum SelectionDefBind {
     Enum(BindEnum),
     UnionMap(HashMap<String, BindValue>),
@@ -14124,6 +14177,7 @@ pub enum SelectionDefBind {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum BindValue {
     AnythingArray(Vec<Option<serde_json::Value>>),
     Binding(Binding),
@@ -14133,6 +14187,7 @@ pub enum BindValue {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum SelectionDefInit {
     UnionMap(HashMap<String, InitSelectionInitMapping>),
     UnionMapArray(Vec<HashMap<String, SelectionInitIntervalElement>>),
@@ -14140,6 +14195,7 @@ pub enum SelectionDefInit {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum InitSelectionInitMapping {
     Bool(bool),
     DateTime(DateTime),
@@ -14179,6 +14235,7 @@ pub enum InitSelectionInitMapping {
 /// __See also:__ [`toggle`](https://vega.github.io/vega-lite/docs/toggle.html) documentation.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Translate {
     Bool(bool),
     String(String),
@@ -14186,6 +14243,7 @@ pub enum Translate {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Title {
     String(String),
     TitleParams(TitleParams),
@@ -14199,6 +14257,7 @@ pub enum Title {
 /// "column"}` can be used to refer to the repeated field respectively.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum RepeatUnion {
     RepeatMapping(RepeatMapping),
     StringArray(Vec<String>),
@@ -14206,6 +14265,7 @@ pub enum RepeatUnion {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Spacing {
     Double(f64),
     RowColNumber(RowColNumber),
@@ -14221,6 +14281,7 @@ pub enum Spacing {
 /// __Default value:__ `1.5`.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum BoxplotExtent {
     Double(f64),
     Enum(ExtentEnum),
@@ -14229,6 +14290,7 @@ pub enum BoxplotExtent {
 /// The bounds calculation to use for legend orient group layout.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum LayoutBounds {
     Enum(BoundsEnum),
     SignalRef(SignalRef),
@@ -14236,6 +14298,7 @@ pub enum LayoutBounds {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum BottomCenter {
     Bool(bool),
     SignalRef(SignalRef),
@@ -14244,6 +14307,7 @@ pub enum BottomCenter {
 /// The layout direction for legend orient group layout.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Direction {
     Enum(Orientation),
     SignalRef(SignalRef),
@@ -14251,6 +14315,7 @@ pub enum Direction {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Margin {
     Double(f64),
     SignalRef(SignalRef),
@@ -14264,6 +14329,7 @@ pub enum Margin {
 /// __Default value__: `5`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum Padding {
     Double(f64),
     PaddingClass(PaddingClass),
@@ -14271,6 +14337,7 @@ pub enum Padding {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum RangeValue {
     SchemeConfig(SchemeConfig),
     UnionArray(Vec<RangeRange>),
@@ -14278,6 +14345,7 @@ pub enum RangeValue {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum MultiInit {
     UnionMap(HashMap<String, SelectionInitIntervalElement>),
     UnionMapArray(Vec<HashMap<String, SelectionInitIntervalElement>>),
@@ -14289,6 +14357,7 @@ pub enum MultiInit {
 /// parsed according to the specified format type.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
+#[derive(From)]
 pub enum InlineDatasetValue {
     AnythingMap(HashMap<String, Option<serde_json::Value>>),
     String(String),
