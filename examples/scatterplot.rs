@@ -36,7 +36,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .build()?)
                 .color(
                     DefWithConditionMarkPropFieldDefStringNullBuilder::default()
-                        .field(Field::String("cluster".to_string()))
+                        .field("cluster")
                         .build()?,
                 )
                 .build()?,
