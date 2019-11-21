@@ -40,9 +40,3 @@ pub use data::*;
 pub use removable_value::RemovableValue;
 pub use schema::*;
 pub use string::*;
-
-impl From<Mark> for AnyMark {
-    fn from(v: Mark) -> Self {
-        AnyMark::Enum(v)
-    }
-}

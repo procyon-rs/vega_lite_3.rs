@@ -38,13 +38,11 @@ impl Vegalite {
 
 // for every enum with String(String)
 macro_rules! from_into_string{
-    ( $( $x:ident ),* ) => {
+    ( $( $x:ident ),* $(,)? ) => {
             $(
-                impl<S> From<S> for $x
-                where
-                    S: Into<String>,
+                impl From<&str> for $x
                 {
-                    fn from(v: S) -> Self {
+                    fn from(v: &str) -> Self {
                         $x::String(v.into())
                     }
                 }
@@ -74,7 +72,7 @@ from_into_string!(
     InitSelectionInitMapping,
     Translate,
     InlineDatasetValue,
-    UrlDataInlineDataset
+    UrlDataInlineDataset,
 );
 
 // #[cfg(test)]

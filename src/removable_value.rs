@@ -15,6 +15,8 @@ use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use std::fmt;
 use std::marker::PhantomData;
 
+use crate::schema::*;
+
 /// Wrapper for a field that can be either the default value, null or specified
 #[derive(Clone, Debug)]
 pub enum RemovableValue<T: Clone> {
@@ -52,10 +54,33 @@ impl<T: Clone> From<T> for RemovableValue<T> {
     }
 }
 
-impl From<&str> for RemovableValue<String> {
-    fn from(value: &str) -> Self {
-        RemovableValue::Specified(value.to_string())
-    }
+macro_rules! from_into_with_removable{
+    ( $( $from:ty => $to:ty ),* $(,)? ) => {
+            $(
+                impl From<$from> for RemovableValue<$to>
+                {
+                    fn from(v: $from) -> Self {
+                        RemovableValue::Specified(v.into())
+                    }
+                }
+            )*
+    };
+}
+
+from_into_with_removable! {
+    &str => String,
+
+    SortOrder => Sort,
+    EncodingSortField => Sort,
+    Vec<SelectionInitIntervalElement> => Sort,
+
+    DefWithConditionTextFieldDefValue => Tooltip,
+    Vec<TextFieldDef> => Tooltip,
+
+    bool => TooltipUnion,
+    f64 => TooltipUnion,
+    String => TooltipUnion,
+    TooltipContent => TooltipUnion,
 }
 
 impl<T: Clone> Default for RemovableValue<T> {
