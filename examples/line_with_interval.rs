@@ -1,46 +1,12 @@
-// This is the schema we are trying to mimic
-// {
-//   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-//   "data": {"url": "data/cars.json"},
-//   "encoding": {
-//     "x": {
-//       "field": "Year",
-//       "type": "temporal",
-//       "timeUnit": "year"
-//     }
-//   },
-//   "layer": [
-//     {
-//       "mark": {"type": "errorband", "extent": "ci"},
-//       "encoding": {
-//         "y": {
-//           "field": "Miles_per_Gallon",
-//           "type": "quantitative",
-//           "title": "Mean of Miles per Gallon (95% CIs)"
-//         }
-//       }
-//     },
-//     {
-//       "mark": "line",
-//       "encoding": {
-//         "y": {
-//           "aggregate": "mean",
-//           "field": "Miles_per_Gallon",
-//           "type": "quantitative"
-//         }
-//       }
-//     }
-//   ]
-// }
 use vega_lite_3::*;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     // the chart
     let chart = VegaliteBuilder::default()
         .title("Line Chart with Confidence Interval Band")
-        // .autosize(Autosize::Enum(AutosizeType::Fit))
-        .height(200)
-        .width(300)
+        .autosize(AutosizeType::Fit)
+        //.height(200)
+        //.width(300)
         .data(
             UrlDataBuilder::default()
                 .url("https://raw.githubusercontent.com/vega/vega-datasets/master/data/cars.json")
@@ -64,19 +30,18 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                         .y(YClassBuilder::default()
                             .field("Miles_per_Gallon")
                             .def_type(StandardType::Quantitative)
-                            .aggregate(Aggregate::Enum(AggregateOp::Mean))
+                            .aggregate(AggregateOp::Mean)
                             .build()?)
                         .build()?,
                 )
                 .build()?,
             LayerSpecBuilder::default()
-                // .mark(Mark::Errorband)
-                .mark(AnyMark::MarkDefClass(
+                .mark(
                     MarkDefClassBuilder::default()
                         .def_type(Mark::Errorband)
-                        .extent(BoxPlotDefExtent::Enum(ExtentExtent::Ci))
+                        .extent(ExtentExtent::Ci)
                         .build()?,
-                ))
+                )
                 .encoding(
                     LayerEncodingBuilder::default()
                         .y(YClassBuilder::default()
