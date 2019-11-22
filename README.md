@@ -1,4 +1,4 @@
-# vega-lite v3 for rust
+# Vega-lite V3 for Rust
 
 [![license](https://img.shields.io/crates/l/vega_lite_3.svg)](https://spdx.org/licenses/Apache-2.0.html)
 [![version](https://img.shields.io/crates/v/vega_lite_3.svg)](https://crates.io/crates/vega_lite_3)
@@ -8,18 +8,25 @@
 [![codecov](https://codecov.io/gh/procyon-rs/vega_lite_3.rs/branch/master/graph/badge.svg)](https://codecov.io/gh/procyon-rs/vega_lite_3.rs)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=procyon-rs/vega_lite_3.rs)](https://dependabot.com)
 
-A Rust api for vega-lite v3. Use it to generate vega-lite json, to display result in your Browser or in Jupyter (via [showata](https://crates.io/crates/showata)).
+## About
+
+A Rust API for vega-lite v3 to build chart with a rusty API.
+
+It's possible to generate a complete vega-lite json and display the result in your Browser or in Jupyter. This feature is made possible thanks to [showata](https://crates.io/crates/showata).
+It's also possible to use an existing vega-lite json and plug your data source seamlessly. This way you can leverage existing vizualisation and adapt it to your design.
 
 ## Examples
 
-see [the full list of examples on github](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/)
+In order to have a complete mapping of the vega-lite v3 specification the code for the schema was automaticlly generated.
+To help describe all the possible features a [gallery of example is provided on github](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/)
 
 [<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/cloropleth_unemployment.png" height="150px">](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/cloropleth_unemployment.rs)
 [<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/diverging_stacked_bar_chart.png" height="150px">](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/diverging_stacked_bar_chart.rs)
 [<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/scatterplot.png" height="150px">](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/scatterplot.rs)
 [<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/stacked_bar_chart.png" height="150px">](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/stacked_bar_chart.rs)
 [<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/stock_graph.png" height="150px">](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/stock_graph.rs)
-[<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/line_with_interval.png" height="150px">](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/line_with_interval.rs)
+
+### Simple chart using ndarray generated data
 
 ```rust
 let values: Array2<f64> = Array::random((100, 2), StandardNormal);
@@ -41,6 +48,35 @@ let chart = VegaliteBuilder::default()
             .build()?,
     )
     .build()?;
+chart.show()?;
+```
+
+### Simple chart using existing json definition with new data
+
+```rust
+// Use existing vega-lite json specification
+let spec = r##"{
+    "$schema": "https://vega.github.io/schema/vega-lite/v3.4.0.json",
+    "encoding": {
+        "x": {
+            "field": "data.0",
+            "type": "quantitative"
+        },
+        "y": {
+            "field": "data.1",
+            "type": "quantitative"
+        }
+    },
+    "mark": "point",
+    "title": "Random points"
+}"##;
+
+// Use you own data to populate the chart
+let values: Array2<f64> = Array::random((100, 2), StandardNormal);
+let mut chart: Vegalite = serde_json::from_str(spec)?;
+chart.data = values.into();
+
+// display the chart using `showata`
 chart.show()?;
 ```
 
