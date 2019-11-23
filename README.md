@@ -8,11 +8,11 @@
 [![codecov](https://codecov.io/gh/procyon-rs/vega_lite_3.rs/branch/master/graph/badge.svg)](https://codecov.io/gh/procyon-rs/vega_lite_3.rs)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=procyon-rs/vega_lite_3.rs)](https://dependabot.com)
 
-## About
-
 A Rust API for vega-lite v3 to build chart with a rusty API.
 
-It's possible to generate a complete vega-lite json and display the result in your Browser or in Jupyter. This feature is made possible thanks to [showata](https://crates.io/crates/showata).
+Similar to the [Altair](https://altair-viz.github.io/) project in python, this crate build upon [Vega-Lite](https://vega.github.io/vega-lite/) specifications. Vega-Lite is a high-level grammar of interactive graphics. It provides a concise JSON syntax for rapidly generating visualizations to support analysis. Vega-Lite specifications can be compiled to [Vega](https://vega.github.io/vega/)  specifications. Those specifications are then parsed by Vega’s JavaScript runtime to generate both static images or interactive web-based views.
+This crate has a complete mapping of Vega-LiteV3 specification and can be found in `src/schema.rs`.
+With all the types and structs, it's possible to create your Rust Vegalite graph that will be serialize into a vega-lite JSON. Thanks to [Showata](https://crates.io/crates/showata) the resulting visualization can be display in your Web-Browser or in a Rust [Jupyter Notebook](https://crates.io/crates/evcxr_jupyter).
 It's also possible to use an existing vega-lite json and plug your data source seamlessly. This way you can leverage existing vizualisation and adapt it to your design.
 
 ## Examples
