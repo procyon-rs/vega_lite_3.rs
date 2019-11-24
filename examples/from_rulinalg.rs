@@ -1,8 +1,5 @@
 use vega_lite_3::*;
 
-// use ndarray::{Array, Array2};
-// use ndarray_rand::rand_distr::StandardNormal;
-// use ndarray_rand::RandomExt;
 use rulinalg::matrix::Matrix;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
