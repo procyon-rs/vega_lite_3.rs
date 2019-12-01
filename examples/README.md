@@ -1,5 +1,21 @@
 # Examples Gallery
 
+- [Graph types](#graph-types)
+  - [Cloropleth](#cloropleth)
+  - [Diverging Stacked Bar Chart](#diverging-stacked-bar-chart)
+  - [Scatterplot](#scatterplot)
+  - [Stacked Bar Grap](#stacked-bar-graphh)
+  - [Stock Graph](#stock-graph)
+  - [Line with confidence Interval](#line-with-confidence-interval)
+- [Data Sources](#data-sources)
+  - [From ndarray](#from-ndarray)
+  - [From csv](#from-csv)
+  - [From url](#from-url)
+  - [From JSON spec](#from-json-spec)
+  - [From JSON spec with new Data](#from-json-spec-with-new-data)
+- [Miscellaneous](#miscellaneous)
+  - [Without using builders](#without-using-builders)
+
 ## Graph types
 
 ### [Cloropleth](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/cloropleth_unemployment.rs)
@@ -60,7 +76,7 @@ cargo run --example line_with_interval.rs
 
 Loads data from an URL, displaying the aggregated mean by year with the variance on a two level layers as a line graph.
 
-<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/stock_graph.png">
+<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/line_with_interval.png">
 
 ## Data Sources
 
