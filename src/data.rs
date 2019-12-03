@@ -99,52 +99,63 @@ where
     }
 }
 
-// // #[cfg(feature = "rulinalg")]
-// use rulinalg::matrix::{BaseMatrix, Matrix};
-// // #[cfg(feature = "rulinalg")]
-// impl<T> From<Matrix<T>> for UrlData
-// where
-//     T: Serialize,
-// {
-//     fn from(v: Matrix<T>) -> Self {
-//         iter_to_data(v.into_row().into_iter())
-//     }
-// }
-// // #[cfg(feature = "rulinalg")]
-// impl<T> From<Matrix<T>> for RemovableValue<UrlData>
-// where
-//     T: Serialize,
-// {
-//     fn from(v: Matrix<T>) -> Self {
-//         RemovableValue::Specified(v.into())
-//     }
-// }
-
-// #[cfg(feature = "nalgebra")]
-use nalgebra as na;
-// #[cfg(feature = "nalgebra")]
-impl<N, R, C, S> From<na::Matrix<N, R, C, S>> for UrlData
+#[cfg(feature = "rulinalg")]
+use rulinalg::matrix::{BaseMatrix, Matrix};
+#[cfg(feature = "rulinalg")]
+impl<T> From<Matrix<T>> for UrlData
 where
-    N: na::Scalar + PartialOrd + Serialize,
-    R: na::Dim,
-    C: na::Dim,
-    S: na::base::storage::Storage<N, R, C>,
+    T: Serialize,
 {
-    fn from(v: na::Matrix<N, R, C, S>) -> Self {
-        //iter_to_data(v.row_iter().into_iter())
-        iter_to_data(v.row(1).into_iter())
+    fn from(v: Matrix<T>) -> Self {
+        iter_to_data(v.row_iter().map(|row| row.raw_slice()))
+    }
+}
+#[cfg(feature = "rulinalg")]
+impl<T> From<Matrix<T>> for RemovableValue<UrlData>
+where
+    T: Serialize,
+{
+    fn from(v: Matrix<T>) -> Self {
+        RemovableValue::Specified(v.into())
+    }
+}
+#[cfg(feature = "nalgebra")]
+use nalgebra::base::storage::Storage;
+#[cfg(feature = "nalgebra")]
+use nalgebra::{Dim, Matrix as naMatrix, Scalar};
+
+#[cfg(feature = "nalgebra")]
+impl<N, R, C, S> From<naMatrix<N, R, C, S>> for UrlData
+where
+    N: Scalar + PartialOrd + Serialize,
+    R: Dim,
+    C: Dim,
+    S: Storage<N, R, C>,
+{
+    fn from(v: naMatrix<N, R, C, S>) -> Self {
+        let strides = v.strides();
+        iter_to_data(v.row_iter().into_iter().map(|row| {
+            row.data
+                .as_slice()
+                .iter()
+                .cloned()
+                .enumerate()
+                .filter(|(i, _)| i % strides.1 == 0)
+                .map(|(_, v)| v)
+                .collect::<Vec<_>>()
+        }))
     }
 }
 
-// #[cfg(feature = "nalgebra")]
-impl<N, R, C, S> From<na::Matrix<N, R, C, S>> for RemovableValue<UrlData>
+#[cfg(feature = "nalgebra")]
+impl<N, R, C, S> From<naMatrix<N, R, C, S>> for RemovableValue<UrlData>
 where
-    N: na::Scalar + PartialOrd + Serialize,
-    R: na::Dim,
-    C: na::Dim,
-    S: na::base::storage::Storage<N, R, C>,
+    N: Scalar + PartialOrd + Serialize,
+    R: Dim,
+    C: Dim,
+    S: Storage<N, R, C>,
 {
-    fn from(v: na::Matrix<N, R, C, S>) -> Self {
+    fn from(v: naMatrix<N, R, C, S>) -> Self {
         RemovableValue::Specified(v.into())
     }
 }

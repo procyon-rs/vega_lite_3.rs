@@ -1,11 +1,10 @@
+use nalgebra::Matrix4x2;
+use serde_json;
 use vega_lite_3::*;
-
-use nalgebra as na;
-
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // A new matrix with 3 rows and 2 columns.
-    let values = na::Matrix2::new(1, 2, 3, 4);
-    dbg!(values);
+    // A new matrix with 4 rows and 2 columns.
+    let values = Matrix4x2::new(1, 2, 3, 4, 5, 6, 7, 8);
+    dbg!(serde_json::to_value(values)?);
     // the chart
     let chart = VegaliteBuilder::default()
         .title("Random points")
@@ -14,11 +13,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .encoding(
             EncodingBuilder::default()
                 .x(XClassBuilder::default()
-                    .field("data.0")
+                    .field("0")
                     .def_type(StandardType::Quantitative)
                     .build()?)
                 .y(YClassBuilder::default()
-                    .field("data.1")
+                    .field("1")
                     .def_type(StandardType::Quantitative)
                     .build()?)
                 .build()?,
