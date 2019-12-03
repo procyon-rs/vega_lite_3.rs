@@ -1,10 +1,9 @@
 use nalgebra::Matrix4x2;
-use serde_json;
 use vega_lite_3::*;
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     // A new matrix with 4 rows and 2 columns.
     let values = Matrix4x2::new(1, 2, 3, 4, 5, 6, 7, 8);
-    dbg!(serde_json::to_value(values)?);
+
     // the chart
     let chart = VegaliteBuilder::default()
         .title("Random points")

@@ -1,13 +1,13 @@
 use vega_lite_3::*;
 
-use ndarray::{arr2, Array, Array2};
+use ndarray::{Array, Array2};
 use ndarray_rand::rand_distr::StandardNormal;
 use ndarray_rand::RandomExt;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     // input data: a random ndarray
-    //  let values: Array2<f64> = Array::random((100, 2), StandardNormal);
-    let values = Array::from_shape_vec((2, 2), vec![1, 2, 3, 4])?;
+    let values: Array2<f64> = Array::random((100, 2), StandardNormal);
+
     // the chart
     let chart = VegaliteBuilder::default()
         .title("Random points")
