@@ -134,7 +134,7 @@ where
 {
     fn from(v: naMatrix<N, R, C, S>) -> Self {
         let strides = v.strides();
-        iter_to_data(v.row_iter().into_iter().map(|row| {
+        iter_to_data(v.row_iter().map(|row| {
             row.data
                 .as_slice()
                 .iter()
