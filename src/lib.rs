@@ -10,9 +10,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//! This crate provides a thin wrapper over vega lite v3, as well as a few helpers to help ingest data from
+//! This crate provides a thin wrapper over Vega-Lite v3, as well as a few helpers to help ingest data from
 //! various sources and builders to help build graphs. See
 //! [examples](https://github.com/procyon-rs/vega_lite_3.rs/tree/master/examples) for more help on how to use it.
+//!
+//! ## Documentation Disclaimer
+//!
+//! Most of this crate has been generated from the json schema of Vega-Lite, so is the documentation on Vega-Lite
+//! types. A lot of struct are documented as accepting a string but are actually not. See
+//! [`FontWeight`](enum.FontWeight.html) for an example. Those are usually converted to an enum, or may have a
+//! `String` variant wrapping the actual string (for example, [`Month`](enum.Month.html)). In those cases,
+//! `From<String>` is implemented for the enum, and will automatically wrap the string in the correct variant.
 
 #![deny(
     warnings,
