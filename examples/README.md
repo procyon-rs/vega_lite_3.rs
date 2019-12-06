@@ -1,20 +1,23 @@
 # Examples Gallery
 
-- [Graph types](#graph-types)
-  - [Cloropleth](#cloropleth)
-  - [Diverging Stacked Bar Chart](#diverging-stacked-bar-chart)
-  - [Scatterplot](#scatterplot)
-  - [Stacked Bar Grap](#stacked-bar-graphh)
-  - [Stock Graph](#stock-graph)
-  - [Line with confidence Interval](#line-with-confidence-interval)
-- [Data Sources](#data-sources)
-  - [From ndarray](#from-ndarray)
-  - [From csv](#from-csv)
-  - [From url](#from-url)
-  - [From JSON spec](#from-json-spec)
-  - [From JSON spec with new Data](#from-json-spec-with-new-data)
-- [Miscellaneous](#miscellaneous)
-  - [Without using builders](#without-using-builders)
+- [Examples Gallery](#examples-gallery)
+  - [Graph types](#graph-types)
+    - [Cloropleth](#cloropleth)
+    - [Diverging Stacked Bar Chart](#diverging-stacked-bar-chart)
+    - [Scatterplot](#scatterplot)
+    - [Stacked Bar Graph](#stacked-bar-graph)
+    - [Stock Graph](#stock-graph)
+    - [Line with confidence Interval](#line-with-confidence-interval)
+  - [Data Sources](#data-sources)
+    - [From ndarray](#from-ndarray)
+    - [From csv](#from-csv)
+    - [From url](#from-url)
+    - [From JSON spec](#from-json-spec)
+    - [From JSON spec with new Data](#from-json-spec-with-new-data)
+  - [From nalgebra](#from-nalgebra)
+  - [From rulinalg](#from-rulinalg)
+  - [Miscellaneous](#miscellaneous)
+    - [Without using builders](#without-using-builders)
 
 ## Graph types
 
@@ -133,7 +136,7 @@ Create a chart from existing json and add new data
 ## [From nalgebra](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/from_nalgebra.rs)
 
 ```rust
-cargo run --example from_nalgebra
+cargo run --example from_nalgebra --features nalgebra
 ```
 
 Loads data directly from a random [`nalgebra::Matrix`](https://docs.rs/nalgebra/0.19.0/nalgebra/index.html).
@@ -143,7 +146,7 @@ Loads data directly from a random [`nalgebra::Matrix`](https://docs.rs/nalgebra/
 ## [From rulinalg](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/from_ndarray.rs)
 
 ```rust
-cargo run --example from_rulinalg
+cargo run --example from_rulinalg --features rulinalg
 ```
 
 Loads data directly from a random [`rulinalg::matrix::Matrix`](https://athemathmo.github.io/rulinalg/doc/rulinalg/matrix/struct.Matrix.html).

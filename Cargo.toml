@@ -28,4 +28,4 @@ ndarray-rand = "0.11"
 
 [features]
 show_vega = ["showata", "anyhow"]
-default = ["show_vega", "csv", "ndarray", "nalgebra", "rulinalg"]
+default = ["show_vega", "csv", "ndarray"]
