@@ -4,7 +4,6 @@ use vega_lite_3::*;
 fn main() -> Result<(), Box<dyn std::error::Error>> {
   let mut selector_1 = HashMap::new();
   selector_1.insert(
-    //format!("brush"), // Only accept String
     "brush".to_string(),
     SelectionDefBuilder::default()
       .encodings(vec![SingleDefUnitChannel::X])
@@ -133,7 +132,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
           EncodingBuilder::default()
             .color(
               DefWithConditionMarkPropFieldDefStringNullBuilder::default()
-                //     .value("lightgray")
                 .condition(
                   ConditionalPredicateStringValueDefClassBuilder::default()
                     .selection(PurpleSelectionOperand::String("click".to_string()))
