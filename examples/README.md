@@ -3,6 +3,7 @@
 - [Examples Gallery](#examples-gallery)
   - [Graph types](#graph-types)
     - [Cloropleth](#cloropleth)
+    - [Interactive Vconcat](#interactive-vconcat)
     - [Diverging Stacked Bar Chart](#diverging-stacked-bar-chart)
     - [Scatterplot](#scatterplot)
     - [Stacked Bar Graph](#stacked-bar-graph)
@@ -30,6 +31,16 @@ cargo run --example cloropleth_unemployment
 Display data from a csv and a tsv as a cloropleth on a geo projection.
 
 <img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/cloropleth_unemployment.png">
+
+### [Interactive Vconcat](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/vconcat_interactive.rs)
+
+```bash
+cargo run --example interactive_json
+```
+
+Display data from a csv and a tsv as a cloropleth on a geo projection.
+
+![vconcat_interact Visualization](https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/vconcat_interact.png")
 
 ### [Diverging Stacked Bar Chart](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/diverging_stacked_bar_chart.rs)
 
