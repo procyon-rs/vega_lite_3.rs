@@ -40,7 +40,7 @@ cargo run --example interactive_json
 
 Display data from a csv and a tsv as a cloropleth on a geo projection.
 
-![vconcat_interact Visualization](https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/vconcat_interact.png")
+![vconcat_interact Visualization](https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/vconcat_interact.png)
 
 ### [Diverging Stacked Bar Chart](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/diverging_stacked_bar_chart.rs)
 
