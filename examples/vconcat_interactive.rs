@@ -2,24 +2,24 @@ use std::collections::HashMap;
 use vega_lite_3::*;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-  let mut selector_1 = HashMap::new();
-  selector_1.insert(
-    "brush".to_string(),
-    SelectionDefBuilder::default()
-      .encodings(vec![SingleDefUnitChannel::X])
-      .selection_def_type(SelectionDefType::Interval)
-      .build()?,
-  );
-  let mut selector_2 = HashMap::new();
-  selector_2.insert(
-    "click".to_string(),
-    SelectionDefBuilder::default()
-      .encodings(vec![SingleDefUnitChannel::Color])
-      .selection_def_type(SelectionDefType::Multi)
-      .build()?,
-  );
+    let mut selector_1 = HashMap::new();
+    selector_1.insert(
+        "brush".to_string(),
+        SelectionDefBuilder::default()
+            .encodings(vec![SingleDefUnitChannel::X])
+            .selection_def_type(SelectionDefType::Interval)
+            .build()?,
+    );
+    let mut selector_2 = HashMap::new();
+    selector_2.insert(
+        "click".to_string(),
+        SelectionDefBuilder::default()
+            .encodings(vec![SingleDefUnitChannel::Color])
+            .selection_def_type(SelectionDefType::Multi)
+            .build()?,
+    );
 
-  let chart = VegaliteBuilder::default()
+    let chart = VegaliteBuilder::default()
     .title("Seattle Weather, 2012-2015")
     .data(
       UrlDataBuilder::default()
@@ -161,11 +161,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     ])
     .build()?;
 
-  // display the chart using `showata`
-  chart.show()?;
+    // display the chart using `showata`
+    chart.show()?;
 
-  // print the vega lite spec
-  eprint!("{}", chart.to_string()?);
+    // print the vega lite spec
+    eprint!("{}", chart.to_string()?);
 
-  Ok(())
+    Ok(())
 }
