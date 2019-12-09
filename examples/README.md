@@ -14,8 +14,8 @@
     - [From url](#from-url)
     - [From JSON spec](#from-json-spec)
     - [From JSON spec with new Data](#from-json-spec-with-new-data)
-  - [From nalgebra](#from-nalgebra)
-  - [From rulinalg](#from-rulinalg)
+    - [From nalgebra](#from-nalgebra)
+    - [From rulinalg](#from-rulinalg)
   - [Miscellaneous](#miscellaneous)
     - [Without using builders](#without-using-builders)
 
@@ -133,7 +133,7 @@ Create a chart from existing json and add new data
 
 <img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/mixed.png">
 
-## [From nalgebra](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/from_nalgebra.rs)
+### [From nalgebra](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/from_nalgebra.rs)
 
 ```rust
 cargo run --example from_nalgebra --features nalgebra
@@ -143,7 +143,7 @@ Loads data directly from a random [`nalgebra::Matrix`](https://docs.rs/nalgebra/
 
 <img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/rulinalg_nalgebra.png">
 
-## [From rulinalg](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/from_ndarray.rs)
+### [From rulinalg](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/from_ndarray.rs)
 
 ```rust
 cargo run --example from_rulinalg --features rulinalg
