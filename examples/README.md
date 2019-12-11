@@ -34,10 +34,10 @@ Display data from a csv and a tsv as a cloropleth on a geo projection.
 ### [Interactive Vconcat](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/vconcat_interactive.rs)
 
 ```bash
-cargo run --example interactive_json
+cargo run --example vconcat_interactive
 ```
 
-Display data from a csv and a tsv as a cloropleth on a geo projection.
+Display two charts that can be be interact together through selection
 
 ![vconcat_interact Visualization](https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/vconcat_interact.png)
 
