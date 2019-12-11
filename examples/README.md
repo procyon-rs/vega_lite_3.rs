@@ -1,10 +1,10 @@
-# Examples Gallery
+# Examples Gallery <!-- omit in toc -->
 
 - [Graph types](#graph-types)
   - [Cloropleth](#cloropleth)
   - [Diverging Stacked Bar Chart](#diverging-stacked-bar-chart)
   - [Scatterplot](#scatterplot)
-  - [Stacked Bar Grap](#stacked-bar-graphh)
+  - [Stacked Bar Graph](#stacked-bar-graph)
   - [Stock Graph](#stock-graph)
   - [Line with confidence Interval](#line-with-confidence-interval)
 - [Data Sources](#data-sources)
@@ -13,6 +13,8 @@
   - [From url](#from-url)
   - [From JSON spec](#from-json-spec)
   - [From JSON spec with new Data](#from-json-spec-with-new-data)
+  - [From nalgebra](#from-nalgebra)
+  - [From rulinalg](#from-rulinalg)
 - [Miscellaneous](#miscellaneous)
   - [Without using builders](#without-using-builders)
 
@@ -129,6 +131,26 @@ cargo run --example from_mixed_json_rust
 Create a chart from existing json and add new data
 
 <img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/mixed.png">
+
+### [From nalgebra](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/from_nalgebra.rs)
+
+```rust
+cargo run --example from_nalgebra --features nalgebra
+```
+
+Loads data directly from a random [`nalgebra::Matrix`](https://docs.rs/nalgebra/0.19.0/nalgebra/index.html).
+
+<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/rulinalg_nalgebra.png">
+
+### [From rulinalg](https://github.com/procyon-rs/vega_lite_3.rs/blob/master/examples/from_ndarray.rs)
+
+```rust
+cargo run --example from_rulinalg --features rulinalg
+```
+
+Loads data directly from a random [`rulinalg::matrix::Matrix`](https://athemathmo.github.io/rulinalg/doc/rulinalg/matrix/struct.Matrix.html).
+
+<img src="https://raw.githubusercontent.com/procyon-rs/vega_lite_3.rs/master/examples/res/screens/rulinalg_nalgebra.png">
 
 ## Miscellaneous
 

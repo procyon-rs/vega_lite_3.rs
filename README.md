@@ -88,6 +88,8 @@ chart.show()?;
 | show_vega | yes                | can display charts in the browser or in a notebook |
 | csv       | yes                | can load data from a csv                           |
 | ndarray   | yes                | can load data from a ndarray                       |
+| nalgebra  | no                 | can load data from a nalgebra::Matrix              |
+| rulinalg  | no                 | can load data from a rulinalg::matrix::Matrix      |
 
 ## Links
 
