@@ -84,5 +84,8 @@ echo '-- From for enums'
 sed -i 's/use serde::/use derive_more::From;\nuse serde::/' $file
 sed -i 's/#\[serde(untagged)\]$/#[serde(untagged)] #[derive(From)]/' $file
 
+echo '-- Fix doc links'
+sed -i 's/types#datetime/struct.DateTime.html/' $file
+
 cargo fmt -- $file
 

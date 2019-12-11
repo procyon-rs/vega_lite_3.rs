@@ -1430,7 +1430,7 @@ pub struct DefWithConditionMarkPropFieldDefStringNull {
     /// order](https://vega.github.io/vega-lite/docs/sort.html#sort-array). In this case, the
     /// sort order will obey the values in the array, followed by any unspecified values in their
     /// original order.  For discrete time field, values in the sort array can be [date-time
-    /// definition objects](types#datetime). In addition, for time units `"month"` and `"day"`,
+    /// definition objects](struct.DateTime.html). In addition, for time units `"month"` and `"day"`,
     /// the values can be the month or day names (case insensitive) or their 3-letter initials
     /// (e.g., `"Mon"`, `"Tue"`).
     /// - `null` indicating no sort.
@@ -1850,7 +1850,7 @@ pub struct ConditionalPredicateStringValueDefClass {
     /// order](https://vega.github.io/vega-lite/docs/sort.html#sort-array). In this case, the
     /// sort order will obey the values in the array, followed by any unspecified values in their
     /// original order.  For discrete time field, values in the sort array can be [date-time
-    /// definition objects](types#datetime). In addition, for time units `"month"` and `"day"`,
+    /// definition objects](struct.DateTime.html). In addition, for time units `"month"` and `"day"`,
     /// the values can be the month or day names (case insensitive) or their 3-letter initials
     /// (e.g., `"Mon"`, `"Tue"`).
     /// - `null` indicating no sort.
@@ -2804,7 +2804,7 @@ pub struct FacetFieldDef {
     /// order](https://vega.github.io/vega-lite/docs/sort.html#sort-array). In this case, the
     /// sort order will obey the values in the array, followed by any unspecified values in their
     /// original order.  For discrete time field, values in the sort array can be [date-time
-    /// definition objects](types#datetime). In addition, for time units `"month"` and `"day"`,
+    /// definition objects](struct.DateTime.html). In addition, for time units `"month"` and `"day"`,
     /// the values can be the month or day names (case insensitive) or their 3-letter initials
     /// (e.g., `"Mon"`, `"Tue"`).
     /// - `null` indicating no sort.
@@ -3387,7 +3387,7 @@ pub struct DefWithConditionMarkPropFieldDefNumber {
     /// order](https://vega.github.io/vega-lite/docs/sort.html#sort-array). In this case, the
     /// sort order will obey the values in the array, followed by any unspecified values in their
     /// original order.  For discrete time field, values in the sort array can be [date-time
-    /// definition objects](types#datetime). In addition, for time units `"month"` and `"day"`,
+    /// definition objects](struct.DateTime.html). In addition, for time units `"month"` and `"day"`,
     /// the values can be the month or day names (case insensitive) or their 3-letter initials
     /// (e.g., `"Mon"`, `"Tue"`).
     /// - `null` indicating no sort.
@@ -3601,7 +3601,7 @@ pub struct ConditionalPredicateNumberValueDefClass {
     /// order](https://vega.github.io/vega-lite/docs/sort.html#sort-array). In this case, the
     /// sort order will obey the values in the array, followed by any unspecified values in their
     /// original order.  For discrete time field, values in the sort array can be [date-time
-    /// definition objects](types#datetime). In addition, for time units `"month"` and `"day"`,
+    /// definition objects](struct.DateTime.html). In addition, for time units `"month"` and `"day"`,
     /// the values can be the month or day names (case insensitive) or their 3-letter initials
     /// (e.g., `"Mon"`, `"Tue"`).
     /// - `null` indicating no sort.
@@ -4683,7 +4683,7 @@ pub struct DefWithConditionMarkPropFieldDefTypeForShapeStringNull {
     /// order](https://vega.github.io/vega-lite/docs/sort.html#sort-array). In this case, the
     /// sort order will obey the values in the array, followed by any unspecified values in their
     /// original order.  For discrete time field, values in the sort array can be [date-time
-    /// definition objects](types#datetime). In addition, for time units `"month"` and `"day"`,
+    /// definition objects](struct.DateTime.html). In addition, for time units `"month"` and `"day"`,
     /// the values can be the month or day names (case insensitive) or their 3-letter initials
     /// (e.g., `"Mon"`, `"Tue"`).
     /// - `null` indicating no sort.
@@ -4879,7 +4879,7 @@ pub struct Conditional {
     /// order](https://vega.github.io/vega-lite/docs/sort.html#sort-array). In this case, the
     /// sort order will obey the values in the array, followed by any unspecified values in their
     /// original order.  For discrete time field, values in the sort array can be [date-time
-    /// definition objects](types#datetime). In addition, for time units `"month"` and `"day"`,
+    /// definition objects](struct.DateTime.html). In addition, for time units `"month"` and `"day"`,
     /// the values can be the month or day names (case insensitive) or their 3-letter initials
     /// (e.g., `"Mon"`, `"Tue"`).
     /// - `null` indicating no sort.
@@ -5401,7 +5401,7 @@ pub struct XClass {
     /// order](https://vega.github.io/vega-lite/docs/sort.html#sort-array). In this case, the
     /// sort order will obey the values in the array, followed by any unspecified values in their
     /// original order.  For discrete time field, values in the sort array can be [date-time
-    /// definition objects](types#datetime). In addition, for time units `"month"` and `"day"`,
+    /// definition objects](struct.DateTime.html). In addition, for time units `"month"` and `"day"`,
     /// the values can be the month or day names (case insensitive) or their 3-letter initials
     /// (e.g., `"Mon"`, `"Tue"`).
     /// - `null` indicating no sort.
@@ -6258,7 +6258,7 @@ pub struct YClass {
     /// order](https://vega.github.io/vega-lite/docs/sort.html#sort-array). In this case, the
     /// sort order will obey the values in the array, followed by any unspecified values in their
     /// original order.  For discrete time field, values in the sort array can be [date-time
-    /// definition objects](types#datetime). In addition, for time units `"month"` and `"day"`,
+    /// definition objects](struct.DateTime.html). In addition, for time units `"month"` and `"day"`,
     /// the values can be the month or day names (case insensitive) or their 3-letter initials
     /// (e.g., `"Mon"`, `"Tue"`).
     /// - `null` indicating no sort.
@@ -6554,7 +6554,7 @@ pub struct Facet {
     /// order](https://vega.github.io/vega-lite/docs/sort.html#sort-array). In this case, the
     /// sort order will obey the values in the array, followed by any unspecified values in their
     /// original order.  For discrete time field, values in the sort array can be [date-time
-    /// definition objects](types#datetime). In addition, for time units `"month"` and `"day"`,
+    /// definition objects](struct.DateTime.html). In addition, for time units `"month"` and `"day"`,
     /// the values can be the month or day names (case insensitive) or their 3-letter initials
     /// (e.g., `"Mon"`, `"Tue"`).
     /// - `null` indicating no sort.
@@ -13881,7 +13881,7 @@ pub enum Scheme {
 /// order](https://vega.github.io/vega-lite/docs/sort.html#sort-array). In this case, the
 /// sort order will obey the values in the array, followed by any unspecified values in their
 /// original order.  For discrete time field, values in the sort array can be [date-time
-/// definition objects](types#datetime). In addition, for time units `"month"` and `"day"`,
+/// definition objects](struct.DateTime.html). In addition, for time units `"month"` and `"day"`,
 /// the values can be the month or day names (case insensitive) or their 3-letter initials
 /// (e.g., `"Mon"`, `"Tue"`).
 /// - `null` indicating no sort.
@@ -13914,7 +13914,7 @@ pub enum Sort {
 /// order](https://vega.github.io/vega-lite/docs/sort.html#sort-array). In this case, the
 /// sort order will obey the values in the array, followed by any unspecified values in their
 /// original order.  For discrete time field, values in the sort array can be [date-time
-/// definition objects](types#datetime). In addition, for time units `"month"` and `"day"`,
+/// definition objects](struct.DateTime.html). In addition, for time units `"month"` and `"day"`,
 /// the values can be the month or day names (case insensitive) or their 3-letter initials
 /// (e.g., `"Mon"`, `"Tue"`).
 /// - `null` indicating no sort.
