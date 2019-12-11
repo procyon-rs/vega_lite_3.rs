@@ -83,13 +83,13 @@ chart.show()?;
 
 ## Features
 
-| name      | enabled by default | functionnality                                     |
-| --------- | ------------------ | -------------------------------------------------- |
-| show_vega | yes                | can display charts in the browser or in a notebook |
-| csv       | yes                | can load data from a csv                           |
-| ndarray   | yes                | can load data from a ndarray                       |
-| nalgebra  | no                 | can load data from a nalgebra::Matrix              |
-| rulinalg  | no                 | can load data from a rulinalg::matrix::Matrix      |
+| name      | enabled by default | functionnality                                     | related crate                                  |
+| --------- | ------------------ | -------------------------------------------------- |------------------------------------------------|
+| show_vega | yes                | can display charts in the browser or in a notebook | [showata](https://crates.io/crates/showata)    |
+| csv       | yes                | can load data from a csv                           | [csv](https://crates.io/crates/csv)            |
+| ndarray   | yes                | can load data from a ndarray                       | [ndarray](https://crates.io/crates/ndarray)    |
+| nalgebra  | no                 | can load data from a nalgebra::Matrix              | [nalgebra](https://crates.io/crates/nalgebra)  |
+| rulinalg  | no                 | can load data from a rulinalg::matrix::Matrix      | [rulinalg](https://crates.io/crates/rulinalg)  |
 
 ## Links
 
