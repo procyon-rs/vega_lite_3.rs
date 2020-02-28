@@ -1,6 +1,6 @@
 [package]
 name = "vega_lite_3"
-version = "0.3.1"
+version = "0.3.2-dev"
 authors = ["David Bernard <david.bernard.31@gmail.com>", "François Mockers <mockersf@gmail.com>", "Thomas Aubry <github.thomaub@gmail.com>"]
 edition = "2018"
 license = "Apache-2.0"
