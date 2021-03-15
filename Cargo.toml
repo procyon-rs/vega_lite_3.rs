@@ -15,7 +15,7 @@ serde = {version = "1.0", features = ["derive"]}
 serde_json = "1.0"
 derive_builder = "0.9.0"
 derive_more = {version = "0.99", default-features = false, features = ["from"]}
-showata = {version = "0.2.0", optional = true}
+showata = {version = "0.3.2", optional = true}
 anyhow = {version = "1.0.22", optional = true }
 ndarray = {version = "0.13", features = ["serde"], optional = true}
 csv = {version = "1.1", optional = true}
