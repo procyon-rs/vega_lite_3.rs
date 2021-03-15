@@ -24,7 +24,7 @@ nalgebra = {version ="0.25.1", features = ["serde-serialize"], optional=true}
 
 [dev-dependencies]
 csv = "1.1"
-ndarray-rand = "0.11"
+ndarray-rand = "0.13"
 
 [features]
 show_vega = ["showata", "anyhow"]
