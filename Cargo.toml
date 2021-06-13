@@ -17,7 +17,7 @@ derive_builder = "0.10.2"
 derive_more = {version = "0.99", default-features = false, features = ["from"]}
 showata = {version = "0.3.2", optional = true}
 anyhow = {version = "1.0.22", optional = true }
-ndarray = {version = "0.14", features = ["serde"], optional = true}
+ndarray = {version = "0.15", features = ["serde"], optional = true}
 csv = {version = "1.1", optional = true}
 rulinalg = {version ="0.4.2", optional=true}
 nalgebra = {version ="0.27.1", features = ["serde-serialize"], optional=true}
